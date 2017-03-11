@@ -4,6 +4,7 @@ package arrayandstring;
  * Write code to reverse a C-Style String.
  */
 public class ReverseString {
+    //Time Complexity: O(n/2)
     public static String reverseString(String str) {
         char[] chars = str.toCharArray();
         int min = 0;

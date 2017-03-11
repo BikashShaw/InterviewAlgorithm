@@ -23,6 +23,7 @@ public class MaximumSumSubarray {
         }
     }
 
+    //Time Complexity: O(n)
     public Result maximumSum(int array[]) {
         assert array != null && array.length > 0 : "Array null or empty.";
         Result maxCurrent = new Result();

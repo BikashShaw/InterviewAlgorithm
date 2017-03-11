@@ -1,3 +1,5 @@
+package arrayandstring;
+
 /**
  * Created by Bikash on 3/10/2017.
  * Implement an algorithm to determine if a string has all unique characters.

@@ -1,3 +1,4 @@
+package arrayandstring;
 /**
  * Created by Bikash on 3/10/2017.
  * Write code to reverse a C-Style String.

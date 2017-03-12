@@ -5,6 +5,7 @@ package linear.datastructure;
  */
 public class Node {
     Node next;
+    Node back; //Please Note: Not need for Singly Linked Lint, Stack and Queue
     int data;
 
     Node(int data) {

@@ -1,6 +1,6 @@
 package datastructure.nonlinear;
 
-import datastructure.linear.Node;
+import java.util.LinkedList;
 
 /**
  * Created by Bikash on 3/11/2017.
@@ -60,6 +60,23 @@ public class BinarySearchTree {
         System.out.println(rootNode.data);
     }
 
+    public void breadthFirstTraverse(BinaryTreeNode rootNode) {
+        java.util.Queue<BinaryTreeNode> binaryTreeNodeQueue = new LinkedList<>();
+        binaryTreeNodeQueue.add(rootNode);
+        while (!binaryTreeNodeQueue.isEmpty()) {
+            BinaryTreeNode polledBinaryTreeNode = binaryTreeNodeQueue.poll();
+            System.out.println(polledBinaryTreeNode.data);
+            if(polledBinaryTreeNode.leftChild != null) {
+                binaryTreeNodeQueue.add(polledBinaryTreeNode.leftChild);
+            }
+
+            if(polledBinaryTreeNode.rightChild != null) {
+                binaryTreeNodeQueue.add(polledBinaryTreeNode.rightChild);
+            }
+        }
+
+    }
+
     public static void main(String[] args) {
 
         BinarySearchTree binarySearchTree = new BinarySearchTree();
@@ -82,6 +99,8 @@ public class BinarySearchTree {
         binarySearchTree.inOrderTraverse(binarySearchTree.root);
         System.out.println("Post-Order Traverse");
         binarySearchTree.postOrderTraverse(binarySearchTree.root);
+        System.out.println("Breadth First Traverse");
+        binarySearchTree.breadthFirstTraverse(binarySearchTree.root);
     }
 
 

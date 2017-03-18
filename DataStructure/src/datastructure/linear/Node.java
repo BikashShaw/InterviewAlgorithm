@@ -1,4 +1,4 @@
-package linear.datastructure;
+package datastructure.linear;
 
 /**
  * Created by Bikash on 3/11/2017.

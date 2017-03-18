@@ -1,8 +1,8 @@
-package linear.datastructure;
+package datastructure.linear;
 
 /**
  * Created by Bikash on 3/11/2017.
- * Implementing a linear.datastructure.Queue
+ * Implementing a Queue
  */
 public class Queue {
     Node first, last;

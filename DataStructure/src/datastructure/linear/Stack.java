@@ -1,8 +1,8 @@
-package linear.datastructure;
+package datastructure.linear;
 
 /**
  * Created by Bikash on 3/11/2017.
- * Simple linear.datastructure.Stack implementation
+ * Simple Stack implementation
  */
 public class Stack {
     Node top;

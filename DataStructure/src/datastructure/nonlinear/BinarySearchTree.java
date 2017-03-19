@@ -97,7 +97,7 @@ public class BinarySearchTree {
 
     public static void main(String[] args) {
 
-//        insertAndTraverse();
+        insertAndTraverse();
 
         BinarySearchTree binarySearchTree = getBinarySearchTree();
 

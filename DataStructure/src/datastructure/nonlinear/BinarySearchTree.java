@@ -8,9 +8,12 @@ import java.util.LinkedList;
 public class BinarySearchTree {
 
     BinaryTreeNode root;
+    int size = 0;
 
     //Time Complexity Average: Θ(log(h)) Worst: O(h)
     public void insert(int data) {
+        size++;
+
         if (root == null) {
             root = new BinaryTreeNode(data);
         } else {
@@ -74,11 +77,40 @@ public class BinarySearchTree {
                 binaryTreeNodeQueue.add(polledBinaryTreeNode.rightChild);
             }
         }
-
     }
+
+    public void sumRootToLeaf(BinaryTreeNode rootNode, int sum) {
+        if (rootNode == null) {
+            System.out.println(sum);
+            return;
+        }
+
+        if (!(rootNode.leftChild == null && rootNode.rightChild != null)) {
+            sumRootToLeaf(rootNode.leftChild, rootNode.data + sum);
+        }
+
+        if (!(rootNode.rightChild == null && rootNode.leftChild != null)) {
+            sumRootToLeaf(rootNode.rightChild, rootNode.data + sum);
+        }
+    }
+
 
     public static void main(String[] args) {
 
+//        insertAndTraverse();
+
+        BinarySearchTree binarySearchTree = getBinarySearchTree();
+
+        binarySearchTree.sumRootToLeaf(binarySearchTree.root, 0);
+    }
+
+    private static void insertAndTraverse() {
+        BinarySearchTree binarySearchTree = getBinarySearchTree();
+
+        performTraverse(binarySearchTree);
+    }
+
+    private static BinarySearchTree getBinarySearchTree() {
         BinarySearchTree binarySearchTree = new BinarySearchTree();
         binarySearchTree.insert(20);
         binarySearchTree.insert(14);
@@ -87,9 +119,9 @@ public class BinarySearchTree {
         binarySearchTree.insert(37);
         binarySearchTree.insert(19);
         binarySearchTree.insert(30);
-
-        performTraverse(binarySearchTree);
-
+        binarySearchTree.insert(12);
+        binarySearchTree.insert(29);
+        return binarySearchTree;
     }
 
     private static void performTraverse(BinarySearchTree binarySearchTree) {

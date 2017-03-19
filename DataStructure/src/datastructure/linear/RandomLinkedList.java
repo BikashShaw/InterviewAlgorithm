@@ -21,6 +21,7 @@ public class RandomLinkedList {
         RandNote temp = oldHead;
         RandNote newHead = null;
         int counter = 1;
+        //Create new nodes
         while (temp != null) {
             RandNote rn = new RandNote(temp.data + counter);
             rn.next = temp.next;
@@ -30,6 +31,7 @@ public class RandomLinkedList {
         }
         temp = oldHead;
         RandNote newTemp = temp.next;
+        //Assign random pointers
         while (temp != null) {
             newTemp.random = temp.random.next;
             if(temp.next != null && newTemp.next != null) {
@@ -44,6 +46,7 @@ public class RandomLinkedList {
         newHead = oldHead.next;
         temp = oldHead;
         newTemp = newHead;
+        //Separate into two list
         while (temp != null) {
             temp.next = temp.next.next;
             newTemp.next = newTemp.next !=null ? newTemp.next.next : null;

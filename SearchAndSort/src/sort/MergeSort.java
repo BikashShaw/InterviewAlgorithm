@@ -26,6 +26,7 @@ public class MergeSort {
         int leftCount = mid - left + 1;
         int rightCount = right - mid;
 
+        //Create and Copy subarray
         int leftArr[] = new int[leftCount];
         for (int i = 0; i < leftCount; i++) {
             leftArr[i] = arr[left + i];
@@ -49,6 +50,8 @@ public class MergeSort {
             }
             print(arr);
         }
+
+        //Copy remaining elements
         while (i < leftCount) {
             arr[k++] = leftArr[i++];
             print(arr);

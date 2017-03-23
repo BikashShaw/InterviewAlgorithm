@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Longest Common Substring
+ * Time Complexity: O(n * m)
  * Created by uc0010 on 3/23/2017.
  */
 public class LongestCommonSubstring {

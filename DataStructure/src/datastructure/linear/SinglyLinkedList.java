@@ -55,19 +55,19 @@ public class SinglyLinkedList {
         Node temp = head;
         System.out.println("**Start**");
         do {
-            System.out.println(temp.data);
+            System.out.print(temp.data + " ");
             temp = temp.next;
 
         } while (temp != null);
-        System.out.println("**End**");
+        System.out.println("\n**End**");
     }
 
     public  Node reverse(Node node) {
-        if(node == null) {
+        if(node == null) { // No Node
             return null;
         }
 
-        if(node.next == null) {
+        if(node.next == null) { //Only 1 node
             return node;
         }
 
@@ -80,8 +80,19 @@ public class SinglyLinkedList {
         next.next = node;
 
         return reverseNode;
+    }
 
+    public  void reverse() {
+        Node current = this.head;
+        Node previous = null;
 
+        while (current != null) {
+            Node next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+        this.head =  previous;
     }
 
     public static void main(String[] args) {
@@ -102,8 +113,11 @@ public class SinglyLinkedList {
         System.out.println("Found 7 in list: " + linkedList.find(7));
         System.out.println("Found 12 in list: " + linkedList.find(12));
 
+        System.out.println("**Recursive Reverse**");
         linkedList.head = linkedList.reverse(linkedList.head);
-
+        linkedList.traverse();
+        System.out.println("**Iterative Reverse**");
+        linkedList.reverse();
         linkedList.traverse();
     }
 }

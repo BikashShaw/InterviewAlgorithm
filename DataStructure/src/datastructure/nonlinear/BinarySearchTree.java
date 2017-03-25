@@ -94,6 +94,18 @@ public class BinarySearchTree {
         }
     }
 
+    //O(log(n))
+    public BinaryTreeNode lowestCommonAncestor(BinaryTreeNode root, BinaryTreeNode p, BinaryTreeNode q) {
+        if(root == null || p == null || q == null) {
+            return root;
+        }
+
+        BinaryTreeNode left = lowestCommonAncestor(root.leftChild, p, q);
+        BinaryTreeNode right = lowestCommonAncestor(root.rightChild, p, q);
+
+        return left != null ? left : right != null ? right : root;
+    }
+
 
     public static void main(String[] args) {
 
@@ -108,6 +120,12 @@ public class BinarySearchTree {
         BinarySearchTree binarySearchTree = getBinarySearchTree();
 
         performTraverse(binarySearchTree);
+
+        BinaryTreeNode lca = binarySearchTree.lowestCommonAncestor(binarySearchTree.root,
+                binarySearchTree.root.leftChild.leftChild.rightChild, binarySearchTree.root.leftChild.rightChild);
+
+        System.out.println("Lowest Common Ancestor: " + lca.data);
+
     }
 
     private static BinarySearchTree getBinarySearchTree() {

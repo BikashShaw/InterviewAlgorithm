@@ -8,16 +8,16 @@ package arrayandstring;
 public class UniqueChar {
     //Time Complexity: O(n) --WORKS ONLY FOR ASCII
     public static boolean isUniqueChars(String str) {
-        boolean[] char_set = new boolean[256];
+        boolean[] charSet = new boolean[256];
         for (int i = 0; i < str.length(); i++) {
             int val = str.charAt(i);
-            if (char_set[val]) return false;
-            char_set[val] = true;
+            if (charSet[val]) return false;
+            charSet[val] = true;
         }
         return true;
     }
 
     public static void main(String[] args) {
-        System.out.println(isUniqueChars(args[0]));
+        System.out.println(isUniqueChars("ABCDSES"));
     }
 }

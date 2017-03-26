@@ -19,6 +19,6 @@ public class ReverseString {
     }
 
     public static void main(String[] args) {
-        System.out.println(reverseString(args[0]));
+        System.out.println(reverseString("ABCDE"));
     }
 }

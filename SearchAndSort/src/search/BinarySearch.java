@@ -1,5 +1,7 @@
 package search;
 
+import java.util.Arrays;
+
 /**
  * Recursive Binary Search
  * Time Complexity: O(log n)
@@ -7,15 +9,15 @@ package search;
  */
 public class BinarySearch {
 
-    public boolean search(int a[], int low, int high, int target) {
+    public int search(int a[], int low, int high, int target) {
 
         if(low > high) {
-            return false;
+            return -1;
         }
         int mid = (high + low) / 2;
 
         if(target == a[mid]) {
-            return true;
+            return mid;
         } else if(target < a[mid]) {
             return search(a, low, mid - 1, target);
         } else {
@@ -26,6 +28,7 @@ public class BinarySearch {
     public static void main(String[] args) {
         int a[] = {1,2,3,4,5,6,9,10,11,12};
         BinarySearch binarySearch = new BinarySearch();
+        System.out.println("Array: " + Arrays.toString(a));
         System.out.println("Found 11: " + binarySearch.search(a, 0, a.length-1, 11));
         System.out.println("Found 7: " + binarySearch.search(a, 0, a.length-1, 7));
         System.out.println("Found 2: " + binarySearch.search(a, 0, a.length-1, 2));

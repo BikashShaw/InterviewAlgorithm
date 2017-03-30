@@ -49,17 +49,17 @@ public class BinarySearchTree {
         if (rootNode == null) {
             return;
         }
-        preOrderTraverse(rootNode.leftChild);
+        inOrderTraverse(rootNode.leftChild);
         System.out.println(rootNode.data);
-        preOrderTraverse(rootNode.rightChild);
+        inOrderTraverse(rootNode.rightChild);
     }
 
     public void postOrderTraverse(BinaryTreeNode rootNode) {
         if (rootNode == null) {
             return;
         }
-        preOrderTraverse(rootNode.leftChild);
-        preOrderTraverse(rootNode.rightChild);
+        postOrderTraverse(rootNode.leftChild);
+        postOrderTraverse(rootNode.rightChild);
         System.out.println(rootNode.data);
     }
 

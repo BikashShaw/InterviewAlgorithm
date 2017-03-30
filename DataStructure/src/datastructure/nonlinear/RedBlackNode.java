@@ -8,9 +8,22 @@ public class RedBlackNode {
 
     int data;
     RedBlackNode leftChild, rightChild;
+    RedBlackColor color;
+    int size; //subtree count
 
     public RedBlackNode(int data) {
-        this.data = data;
+        this(data, null, null, 0);
+    }
 
+    public RedBlackNode(int data, RedBlackNode leftChild, RedBlackNode rightChild, int size) {
+        this.data = data;
+        this.leftChild = leftChild;
+        this.rightChild = rightChild;
+        this.color = RedBlackColor.RED;
+        this.size = size;
+    }
+
+    public boolean isRed() {
+        return color == RedBlackColor.RED;
     }
 }

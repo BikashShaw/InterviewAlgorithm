@@ -54,6 +54,38 @@ public class Graph {
         }
     }
 
+    public boolean isReachable(int src, int dest) {
+        boolean visited[] = new boolean[this.vertices];
+        Queue<Integer> queue = new LinkedList<>();
+
+        queue.add(src);
+
+        while (!queue.isEmpty()) {
+            Integer current = queue.poll();
+            System.out.println("Visiting: " + current);
+            if(current == dest) {
+                return true;
+            }
+
+            visited[current] = true;
+            Iterator<Integer> neighbours = this.adj[current].iterator(); // All adjacent vertices
+
+            while (neighbours.hasNext()) {
+                Integer next = neighbours.next();
+                if(next == dest) {
+                    System.out.println("Found: " + next);
+                    return true;
+                }
+                if(!visited[next]) {
+                    queue.add(next);
+                }
+            }
+
+        }
+
+        return false;
+    }
+
     public static void main(String[] args) {
         Graph graph = new Graph(4);
         graph.addEdge(0,2);
@@ -64,5 +96,11 @@ public class Graph {
         graph.addEdge(3,3); //Self-loop
 
         graph.breadthFirstSearch(2);
+
+        System.out.println("Is 0 reachable to 3: " + graph.isReachable(0,3));
+        System.out.println("Is 3 reachable to 0: " + graph.isReachable(3,0));
+        System.out.println("Is 2 reachable to 3: " + graph.isReachable(2,3));
+        System.out.println("Is 2 reachable to 3: " + graph.isReachable(2,3));
+        System.out.println("Is 2 reachable to 1: " + graph.isReachable(2,1));
     }
 }

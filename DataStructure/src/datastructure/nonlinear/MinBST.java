@@ -15,6 +15,7 @@ public class MinBST {
         return binarySearchTree;
     }
 
+
     private BinaryTreeNode creatBST(int arr[],  int low, int high) {
         if(low > high)  {
             return null;
@@ -32,9 +33,12 @@ public class MinBST {
 
     }
 
+
+
     public static void main(String[] args) {
         MinBST minBST = new MinBST();
         BinarySearchTree binarySearchTree = minBST.creatBST(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
         binarySearchTree.inOrderTraverse(binarySearchTree.root);
+        System.out.println("Is Balanced: " + binarySearchTree.isBalanced(binarySearchTree.root));
     }
 }

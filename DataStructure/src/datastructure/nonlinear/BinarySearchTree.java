@@ -94,6 +94,26 @@ public class BinarySearchTree {
         }
     }
 
+    public boolean isBalanced(BinaryTreeNode rootNode) {
+        return (maxDepth(rootNode) - minDepth(rootNode) <=1);
+    }
+
+    public int maxDepth(BinaryTreeNode rootNode) {
+        if (rootNode == null) {
+            return 0;
+        }
+
+        return 1 + Math.max(maxDepth(rootNode.leftChild), maxDepth(rootNode.rightChild));
+    }
+
+    public int minDepth(BinaryTreeNode rootNode) {
+        if (rootNode == null) {
+            return 0;
+        }
+
+        return 1 + Math.min(minDepth(rootNode.leftChild), minDepth(rootNode.rightChild));
+    }
+
     //O(log(n))
     public BinaryTreeNode lowestCommonAncestor(BinaryTreeNode root, BinaryTreeNode p, BinaryTreeNode q) {
         if(root == null || p == null || q == null) {

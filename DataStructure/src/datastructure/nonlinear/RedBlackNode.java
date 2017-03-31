@@ -12,7 +12,7 @@ public class RedBlackNode {
     int size; //subtree count
 
     public RedBlackNode(int data) {
-        this(data, null, null, 0);
+        this(data, null, null, 1);
     }
 
     public RedBlackNode(int data, RedBlackNode leftChild, RedBlackNode rightChild, int size) {
@@ -23,7 +23,15 @@ public class RedBlackNode {
         this.size = size;
     }
 
+    public RedBlackNode(int data, int size) {
+        this(data, null, null, size);
+    }
+
     public boolean isRed() {
         return color == RedBlackColor.RED;
+    }
+
+    public int getSize() {
+        return size;
     }
 }

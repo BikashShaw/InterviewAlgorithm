@@ -24,15 +24,15 @@ public class RedBlackTree {
 
     /* Static initializer for nilNode */
     {
-        nilNode = new RedBlackNode(-1);
+        nilNode = new RedBlackNode(-1, -1);
         nilNode.color = RedBlackColor.BLACK;
         nilNode.leftChild = nilNode;
         nilNode.rightChild = nilNode;
     }
 
-    private RedBlackTree(int data) {
-        root = new RedBlackNode(data, nilNode, nilNode, 1);
-    }
+//    private RedBlackTree(int data) {
+//        root = new RedBlackNode(data, nilNode, nilNode, 1);
+//    }
 
     public boolean isEmpty() {
         return root == null;
@@ -44,25 +44,48 @@ public class RedBlackTree {
 
     public RedBlackNode insert(int data) {
 
-        return  insert(this.root, data);
+        this.root =  insert(this.root, data);
+
+        return this.root;
     }
 
     public RedBlackNode insert(RedBlackNode node, int data) {
         if (node == null) {
             node = new RedBlackNode(data);
+            node.leftChild = nilNode;
+            node.rightChild = nilNode;
             return node;
+        }
+
+        if(data <  node.data){
+            insert(node.leftChild, data);
+        } else if(data > node.data) {
+            insert(node.rightChild, data);
+        } else {
+            node.data = data;
         }
 
         return node;
     }
 
+    private void rotateLeft(RedBlackNode node) {
+
+    }
+
     public void inOrderTraverse(RedBlackNode rootNode) {
-        if (rootNode == null) {
+        if (rootNode == nilNode) {
             return;
         }
         inOrderTraverse(rootNode.leftChild);
         System.out.println(rootNode.data);
         inOrderTraverse(rootNode.rightChild);
+    }
+
+    public static void main(String[] args) {
+        RedBlackTree redBlackTree = new RedBlackTree();
+        redBlackTree.insert(5);
+
+        redBlackTree.inOrderTraverse(redBlackTree.root);
     }
 
 }

@@ -62,6 +62,14 @@ public class SinglyLinkedList {
         System.out.println("\n**End**");
     }
 
+    public void traverseReverse(Node node) {
+        if(node == null) {
+            return;
+        }
+        traverseReverse(node.next);
+        System.out.print(node.data + " ");
+    }
+
     public  Node reverse(Node node) {
         if(node == null) { // No Node
             return null;
@@ -109,7 +117,9 @@ public class SinglyLinkedList {
         linkedList.traverse();
         linkedList.insertFirst(15);
         linkedList.traverse();
-
+        System.out.println("**Traverse in Revere**");
+        linkedList.traverseReverse(linkedList.head);
+        System.out.println();
         System.out.println("Found 7 in list: " + linkedList.find(7));
         System.out.println("Found 12 in list: " + linkedList.find(12));
 

@@ -1,15 +1,16 @@
 package arrayandstring.matrix;
 
 /**
+ * Matrix rotation by left or right 90
  * Created by Bikash on 3/26/2017.
  */
 public class RotateSquareMatrix {
 
     public enum Rotation {
-        RIGHT, LEFT;
+        RIGHT, LEFT
     }
 
-    public int[][] rotate(int matrix[][], Rotation rotation) {
+    private int[][] rotate(int matrix[][], Rotation rotation) {
         int transposed[][] = new int [matrix.length][matrix.length];
         int n = matrix.length - 1;
         int newRow, newCol;
@@ -29,7 +30,7 @@ public class RotateSquareMatrix {
         return transposed;
     }
 
-    public void printMatrix(int matrix[][]) {
+    private void printMatrix(int matrix[][]) {
         for (int[] rows : matrix) {
             for (int value : rows) {
                 System.out.print(value + " ");

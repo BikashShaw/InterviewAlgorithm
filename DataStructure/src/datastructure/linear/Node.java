@@ -6,6 +6,8 @@ package datastructure.linear;
 public class Node {
     Node next;
     Node back; //Please Note: Not need for Singly Linked Lint, Stack and Queue
+    Node oldMax;
+    Node oldMin;
     int data;
 
     Node(int data) {

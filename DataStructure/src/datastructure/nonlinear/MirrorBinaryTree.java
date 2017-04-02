@@ -27,7 +27,7 @@ public class MirrorBinaryTree {
 
     public static void main(String[] args) {
         MinimumBinaryTree minimumBinaryTree = new MinimumBinaryTree();
-        BinaryTree mirrorBTree = minimumBinaryTree.createMinimuHeightBinaryTree(new int[]{30,30,50, 60, 50,30,30});
+        BinaryTree mirrorBTree = minimumBinaryTree.createMinimumHeightBinaryTree(new int[]{30,30,50, 60, 50,30,30});
         System.out.println("**Mirror Binary Tree InOrder Traverse**");
         mirrorBTree.inOrderTraverse(mirrorBTree.root);
 
@@ -35,7 +35,7 @@ public class MirrorBinaryTree {
 
         System.out.println("Is mirror: " + mirrorBinaryTree.isMirror(mirrorBTree.root));
 
-        BinaryTree nonMirrorBTree = minimumBinaryTree.createMinimuHeightBinaryTree(new int[]{31,30,50, 60, 50,30,30});
+        BinaryTree nonMirrorBTree = minimumBinaryTree.createMinimumHeightBinaryTree(new int[]{31,30,50, 60, 50,30,30});
         System.out.println("**Non-Mirror Binary Tree InOrder Traverse**");
         mirrorBTree.inOrderTraverse(nonMirrorBTree.root);
         System.out.println("Is mirror: " + mirrorBinaryTree.isMirror(nonMirrorBTree.root));

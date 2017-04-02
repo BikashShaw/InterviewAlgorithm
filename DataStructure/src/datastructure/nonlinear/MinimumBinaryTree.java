@@ -6,17 +6,17 @@ package datastructure.nonlinear;
  */
 public class MinimumBinaryTree {
 
-    public BinaryTree createMinimuHeightBinaryTree(int arr[]) {
+    public BinaryTree createMinimumHeightBinaryTree(int arr[]) {
 
         BinaryTree binaryTree = new BinaryTree();
 
-        binaryTree.root = createMinimuHeightBinaryTree(arr,  0, arr.length - 1);
+        binaryTree.root = createMinimumHeightBinaryTree(arr,  0, arr.length - 1);
 
         return binaryTree;
     }
 
 
-    private BinaryTreeNode createMinimuHeightBinaryTree(int arr[], int low, int high) {
+    private BinaryTreeNode createMinimumHeightBinaryTree(int arr[], int low, int high) {
         if(low > high)  {
             return null;
         }
@@ -25,9 +25,9 @@ public class MinimumBinaryTree {
 
         BinaryTreeNode node = new BinaryTreeNode(arr[mid]);
 
-        node.leftChild = createMinimuHeightBinaryTree(arr,  low,mid-1);
+        node.leftChild = createMinimumHeightBinaryTree(arr,  low,mid-1);
 
-        node.rightChild = createMinimuHeightBinaryTree(arr,  mid+1,high);
+        node.rightChild = createMinimumHeightBinaryTree(arr,  mid+1,high);
 
         return node;
 
@@ -37,7 +37,7 @@ public class MinimumBinaryTree {
 
     public static void main(String[] args) {
         MinimumBinaryTree minBST = new MinimumBinaryTree();
-        BinaryTree binarySearchTree = minBST.createMinimuHeightBinaryTree(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
+        BinaryTree binarySearchTree = minBST.createMinimumHeightBinaryTree(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
         binarySearchTree.inOrderTraverse(binarySearchTree.root);
         System.out.println("Is Balanced: " + binarySearchTree.isBalanced(binarySearchTree.root));
     }

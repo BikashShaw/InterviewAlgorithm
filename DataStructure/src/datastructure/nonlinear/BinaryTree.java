@@ -5,13 +5,13 @@ import java.util.LinkedList;
 /**
  * Created by Bikash on 3/11/2017.
  */
-public class BinarySearchTree {
+public class BinaryTree {
 
     BinaryTreeNode root;
     int size = 0;
 
     //Time Complexity Average: Θ(log(h)) Worst: O(h)
-    public void insert(int data) {
+    public void binarySearchTreeInsert(int data) {
         size++;
 
         if (root == null) {
@@ -127,17 +127,18 @@ public class BinarySearchTree {
     }
 
 
+
     public static void main(String[] args) {
 
         insertAndTraverse();
 
-        BinarySearchTree binarySearchTree = getBinarySearchTree();
+        BinaryTree binarySearchTree = getBinarySearchTree();
 
         binarySearchTree.sumRootToLeaf(binarySearchTree.root, 0);
     }
 
     private static void insertAndTraverse() {
-        BinarySearchTree binarySearchTree = getBinarySearchTree();
+        BinaryTree binarySearchTree = getBinarySearchTree();
 
         performTraverse(binarySearchTree);
 
@@ -148,21 +149,21 @@ public class BinarySearchTree {
 
     }
 
-    private static BinarySearchTree getBinarySearchTree() {
-        BinarySearchTree binarySearchTree = new BinarySearchTree();
-        binarySearchTree.insert(20);
-        binarySearchTree.insert(14);
-        binarySearchTree.insert(32);
-        binarySearchTree.insert(36);
-        binarySearchTree.insert(37);
-        binarySearchTree.insert(19);
-        binarySearchTree.insert(30);
-        binarySearchTree.insert(12);
-        binarySearchTree.insert(29);
+    private static BinaryTree getBinarySearchTree() {
+        BinaryTree binarySearchTree = new BinaryTree();
+        binarySearchTree.binarySearchTreeInsert(20);
+        binarySearchTree.binarySearchTreeInsert(14);
+        binarySearchTree.binarySearchTreeInsert(32);
+        binarySearchTree.binarySearchTreeInsert(36);
+        binarySearchTree.binarySearchTreeInsert(37);
+        binarySearchTree.binarySearchTreeInsert(19);
+        binarySearchTree.binarySearchTreeInsert(30);
+        binarySearchTree.binarySearchTreeInsert(12);
+        binarySearchTree.binarySearchTreeInsert(29);
         return binarySearchTree;
     }
 
-    private static void performTraverse(BinarySearchTree binarySearchTree) {
+    private static void performTraverse(BinaryTree binarySearchTree) {
         System.out.println("Pre-Order Traverse");
         binarySearchTree.preOrderTraverse(binarySearchTree.root);
         System.out.println("In-Order Traverse");

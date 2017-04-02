@@ -2,16 +2,16 @@ package arrayandstring.kadane;
 
 /**
  * Created by Bikash on 3/11/2017.
- * Kadane's Algorithm to solve the Maximum Sum Subarray problem
+ * Kadane's Algorithm to solve the Maximum Sum SubArray problem
 
  */
-public class MaximumSumSubarray {
+public class MaximumSumSubArray {
     class Result {
         int startIndex;
         int endIndex;
         int sum;
 
-        public Result() {
+        private Result() {
             startIndex = 0;
             endIndex = 0;
             sum = Integer.MIN_VALUE;
@@ -24,7 +24,7 @@ public class MaximumSumSubarray {
     }
 
     //Time Complexity: O(n)
-    public Result maximumSum(int array[]) {
+    private Result maximumSum(int array[]) {
         assert array != null && array.length > 0 : "Array null or empty.";
         Result maxCurrent = new Result();
         Result max = new Result();
@@ -48,6 +48,6 @@ public class MaximumSumSubarray {
     }
 
     public static void main(String[] args) {
-        System.out.println(new MaximumSumSubarray().maximumSum(new int[] {-1, -2, 3, 4, -5, 6, -18, 7}));
+        System.out.println(new MaximumSumSubArray().maximumSum(new int[] {-1, -2, 3, 4, -5, 6, -18, 7}));
     }
 }

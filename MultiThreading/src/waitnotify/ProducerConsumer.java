@@ -51,7 +51,7 @@ public class ProducerConsumer {
     public static void main(String[] args) throws InterruptedException {
         ProducerConsumer producerConsumer = new ProducerConsumer();
 
-        Thread t1 =  new Thread(new Runnable() {
+        Thread t1 = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -62,7 +62,7 @@ public class ProducerConsumer {
             }
         });
 
-        Thread t2 =  new Thread(new Runnable() {
+        Thread t2 = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {

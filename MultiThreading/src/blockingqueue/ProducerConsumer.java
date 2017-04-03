@@ -32,25 +32,19 @@ public class ProducerConsumer {
     public static void main(String[] args) throws InterruptedException {
         ProducerConsumer producerConsumer = new ProducerConsumer();
 
-        Thread t1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    producerConsumer.produce();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+        Thread t1 = new Thread(() -> {
+            try {
+                producerConsumer.produce();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         });
 
-        Thread t2 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    producerConsumer.consume();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+        Thread t2 = new Thread(() -> {
+            try {
+                producerConsumer.consume();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         });
 

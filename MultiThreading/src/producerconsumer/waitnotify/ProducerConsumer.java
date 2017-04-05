@@ -1,7 +1,7 @@
-package waitnotify;
+package producerconsumer.waitnotify;
 
-import runner.IProducerConsumer;
-import runner.Runner;
+import producerconsumer.runner.IProducerConsumer;
+import producerconsumer.runner.Runner;
 
 import java.util.LinkedList;
 import java.util.Random;

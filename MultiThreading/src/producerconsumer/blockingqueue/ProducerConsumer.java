@@ -1,7 +1,7 @@
-package blockingqueue;
+package producerconsumer.blockingqueue;
 
-import runner.IProducerConsumer;
-import runner.Runner;
+import producerconsumer.runner.IProducerConsumer;
+import producerconsumer.runner.Runner;
 
 import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;

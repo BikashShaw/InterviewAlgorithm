@@ -1,4 +1,4 @@
-package runner;
+package producerconsumer.runner;
 
 /**
  * Created by Bikash on 4/4/2017.

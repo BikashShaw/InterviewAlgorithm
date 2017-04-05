@@ -1,5 +1,8 @@
 package reentrantlock;
 
+import runner.IProducerConsumer;
+import runner.Runner;
+
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.concurrent.locks.Condition;
@@ -8,7 +11,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * Created by Bikash on 4/3/2017.
  */
-public class ProducerConsumer {
+public class ProducerConsumer implements IProducerConsumer  {
     public static int MAX_QUEUE_SIZE = 10;
     LinkedList<Integer> queue = new LinkedList<>();
     ReentrantLock lock;
@@ -61,28 +64,7 @@ public class ProducerConsumer {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        ProducerConsumer producerConsumer = new ProducerConsumer();
-
-        Thread t1 = new Thread(() -> {
-            try {
-                producerConsumer.produce();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-
-        Thread t2 = new Thread(() -> {
-            try {
-                producerConsumer.consume();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-
-        t1.start();
-        t2.start();
-        t1.join();
-        t2.join();
+        new Runner<ProducerConsumer>().run(new ProducerConsumer());
     }
 
 }

@@ -1,5 +1,8 @@
 package blockingqueue;
 
+import runner.IProducerConsumer;
+import runner.Runner;
+
 import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -7,7 +10,7 @@ import java.util.concurrent.BlockingQueue;
 /**
  * Created by Bikash on 4/3/2017.
  */
-public class ProducerConsumer {
+public class ProducerConsumer implements IProducerConsumer {
     BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(10);
 
     public void produce() throws InterruptedException {
@@ -30,28 +33,7 @@ public class ProducerConsumer {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        ProducerConsumer producerConsumer = new ProducerConsumer();
-
-        Thread t1 = new Thread(() -> {
-            try {
-                producerConsumer.produce();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-
-        Thread t2 = new Thread(() -> {
-            try {
-                producerConsumer.consume();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-
-        t1.start();
-        t2.start();
-        t1.join();
-        t2.join();
+        new Runner<ProducerConsumer>().run(new ProducerConsumer());
     }
 
 }

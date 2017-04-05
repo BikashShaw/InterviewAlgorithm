@@ -9,8 +9,8 @@ import java.util.Queue;
  * Created by Bikash on 3/18/2017.
  */
 public class Graph {
-    private int vertices;   // No. of vertices
-    private LinkedList<Integer> adj[]; //Adjacency Lists
+    int vertices;   // No. of vertices
+    LinkedList<Integer> adj[]; //Adjacency Lists
 
     public Graph(int vertices) {
         this.vertices = vertices;
@@ -50,6 +50,19 @@ public class Graph {
                 if(!visited[next]) {
                     queue.add(next);
                 }
+            }
+        }
+    }
+
+    public void depthFirstSearch(int s, boolean visited[]) {
+        visited[s] = true;
+        System.out.println(s);
+
+        Iterator<Integer> iterator = this.adj[s].iterator();
+        while (iterator.hasNext()) {
+            Integer next = iterator.next();
+            if(!visited[next]){
+                depthFirstSearch(next, visited);
             }
         }
     }
@@ -95,12 +108,19 @@ public class Graph {
         graph.addEdge(2,3);
         graph.addEdge(3,3); //Self-loop
 
+        System.out.println("**Breadth First Search Starts**");
         graph.breadthFirstSearch(2);
+        System.out.println("**Breadth First Search Ends**");
+
+        System.out.println("**Depth First Search Starts**");
+        graph.depthFirstSearch(0, new boolean[graph.vertices]);
+        System.out.println("**Depth First Search Ends**");
 
         System.out.println("Is 0 reachable to 3: " + graph.isReachable(0,3));
         System.out.println("Is 3 reachable to 0: " + graph.isReachable(3,0));
         System.out.println("Is 2 reachable to 3: " + graph.isReachable(2,3));
         System.out.println("Is 2 reachable to 3: " + graph.isReachable(2,3));
         System.out.println("Is 2 reachable to 1: " + graph.isReachable(2,1));
+
     }
 }

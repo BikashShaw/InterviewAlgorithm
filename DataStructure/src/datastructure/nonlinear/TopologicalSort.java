@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Stack;
 
 /**
+ * Time Complexity O(V+E).
  * Created by Bikash on 4/5/2017.
  */
 public class TopologicalSort {

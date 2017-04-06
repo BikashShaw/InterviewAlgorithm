@@ -40,5 +40,11 @@ public class MinimumBinaryTree {
         BinaryTree binarySearchTree = minBST.createMinimumHeightBinaryTree(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
         binarySearchTree.inOrderTraverse(binarySearchTree.root);
         System.out.println("Is Balanced: " + binarySearchTree.isBalanced(binarySearchTree.root));
+
+        BinaryTree binaryTree = minBST.createMinimumHeightBinaryTree(new int[]{8, 7, 3, 4, 11, 6, 2, 7, 9});
+
+        System.out.println("Is Binary Search Tree: " +  binaryTree.isBinarySearchTree(binaryTree.root));
+
+
     }
 }

@@ -114,6 +114,7 @@ public class BinaryTree {
         return 1 + Math.min(minDepth(rootNode.leftChild), minDepth(rootNode.rightChild));
     }
 
+    //O(n) - n is nuber of nodes
     public int findHeight(BinaryTreeNode rootNode) {
         if(rootNode == null) {
             return -1;
@@ -137,6 +138,15 @@ public class BinaryTree {
         return left != null ? left : right != null ? right : root;
     }
 
+    public boolean isBinarySearchTree(BinaryTreeNode rootNode) {
+        if(rootNode == null) {
+            return true;
+        }
+
+        return (rootNode.leftChild == null || rootNode.leftChild.data <= rootNode.data) && (rootNode.rightChild == null || rootNode.rightChild.data > rootNode.data)
+                && isBinarySearchTree(rootNode.leftChild) && isBinarySearchTree(rootNode.rightChild);
+    }
+
 
 
     public static void main(String[] args) {
@@ -145,7 +155,8 @@ public class BinaryTree {
 
         BinaryTree binarySearchTree = getBinarySearchTree();
 
-        System.out.println("Height of Tree: " + binarySearchTree.findHeight(binarySearchTree.root));
+        System.out.println("Height of tree: " + binarySearchTree.findHeight(binarySearchTree.root));
+        System.out.println("Is Binary Search tree: " + binarySearchTree.isBinarySearchTree(binarySearchTree.root));
 
         binarySearchTree.sumRootToLeaf(binarySearchTree.root, 0);
     }

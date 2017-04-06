@@ -138,13 +138,16 @@ public class BinaryTree {
         return left != null ? left : right != null ? right : root;
     }
 
-    public boolean isBinarySearchTree(BinaryTreeNode rootNode) {
-        if(rootNode == null) {
+    public boolean isBinarySearchTree(BinaryTreeNode node, int min, int max) {
+        if(node == null) {
             return true;
         }
 
-        return (rootNode.leftChild == null || rootNode.leftChild.data <= rootNode.data) && (rootNode.rightChild == null || rootNode.rightChild.data > rootNode.data)
-                && isBinarySearchTree(rootNode.leftChild) && isBinarySearchTree(rootNode.rightChild);
+        if(node.data < min || node.data > max) {
+            return false;
+        }
+
+        return  isBinarySearchTree(node.leftChild, min, node.data+1) && isBinarySearchTree(node.rightChild, node.data +1, max);
     }
 
 
@@ -156,7 +159,7 @@ public class BinaryTree {
         BinaryTree binarySearchTree = getBinarySearchTree();
 
         System.out.println("Height of tree: " + binarySearchTree.findHeight(binarySearchTree.root));
-        System.out.println("Is Binary Search tree: " + binarySearchTree.isBinarySearchTree(binarySearchTree.root));
+        System.out.println("Is Binary Search tree: " + binarySearchTree.isBinarySearchTree(binarySearchTree.root, Integer.MIN_VALUE, Integer.MAX_VALUE));
 
         binarySearchTree.sumRootToLeaf(binarySearchTree.root, 0);
     }

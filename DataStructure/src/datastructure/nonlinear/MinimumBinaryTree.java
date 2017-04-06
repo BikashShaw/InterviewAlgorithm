@@ -43,7 +43,7 @@ public class MinimumBinaryTree {
 
         BinaryTree binaryTree = minBST.createMinimumHeightBinaryTree(new int[]{8, 7, 3, 4, 11, 6, 2, 7, 9});
 
-        System.out.println("Is Binary Search Tree: " +  binaryTree.isBinarySearchTree(binaryTree.root));
+        System.out.println("Is Binary Search Tree: " +  binaryTree.isBinarySearchTree(binaryTree.root,  Integer.MIN_VALUE, Integer.MAX_VALUE));
 
 
     }

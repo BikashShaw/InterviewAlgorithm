@@ -114,6 +114,17 @@ public class BinaryTree {
         return 1 + Math.min(minDepth(rootNode.leftChild), minDepth(rootNode.rightChild));
     }
 
+    public int findHeight(BinaryTreeNode rootNode) {
+        if(rootNode == null) {
+            return -1;
+        }
+
+        int leftHeight = 1 + findHeight(rootNode.leftChild);
+        int rightHeight = 1 + findHeight(rootNode.rightChild);
+
+        return Math.max(leftHeight, rightHeight);
+    }
+
     //O(log(n))
     public BinaryTreeNode lowestCommonAncestor(BinaryTreeNode root, BinaryTreeNode p, BinaryTreeNode q) {
         if(root == null || p == null || q == null) {
@@ -133,6 +144,8 @@ public class BinaryTree {
         insertAndTraverse();
 
         BinaryTree binarySearchTree = getBinarySearchTree();
+
+        System.out.println("Height of Tree: " + binarySearchTree.findHeight(binarySearchTree.root));
 
         binarySearchTree.sumRootToLeaf(binarySearchTree.root, 0);
     }
@@ -176,3 +189,4 @@ public class BinaryTree {
 
 
 }
+

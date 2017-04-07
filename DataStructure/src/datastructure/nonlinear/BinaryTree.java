@@ -152,10 +152,10 @@ public class BinaryTree {
     }
 
     public boolean isSubTree(BinaryTreeNode treeNode, BinaryTreeNode subTreeNode) {
-        if (treeNode == null || subTreeNode == null) {
-            return  false;
+        if (treeNode == null || subTreeNode == null){
+            return false;
         }
-        if(treeNode.data == subTreeNode.data) {
+        if (treeNode.data == subTreeNode.data){
             return compareEachNode(treeNode, subTreeNode);
         } else {
             return isSubTree(treeNode.leftChild, subTreeNode) || isSubTree(treeNode.rightChild, subTreeNode);
@@ -165,16 +165,14 @@ public class BinaryTree {
     }
 
     private boolean compareEachNode(BinaryTreeNode treeNode, BinaryTreeNode subTreeNode) {
-        if(subTreeNode == null) {
+        if (subTreeNode == null){
             return true;
-        } else if(treeNode == null) {
+        } else if (treeNode == null){
             return false;
-        } {
+        } else {
             return treeNode.data == subTreeNode.data && compareEachNode(treeNode.leftChild, subTreeNode.leftChild)
                     && compareEachNode(treeNode.rightChild, subTreeNode.rightChild);
         }
-
-
     }
 
 

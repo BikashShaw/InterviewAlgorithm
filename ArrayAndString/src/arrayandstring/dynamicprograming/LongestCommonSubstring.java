@@ -38,7 +38,7 @@ public class LongestCommonSubstring {
             }
         }
 
-        printMetrix(dp);
+        printMatrix(dp);
 
         for (int i = 0; i < str1.length(); i++) {
             for (int j = 0; j < str2.length(); j++) {
@@ -50,7 +50,7 @@ public class LongestCommonSubstring {
         return subString;
     }
 
-    private void printMetrix(int[][] dp) {
+    private void printMatrix(int[][] dp) {
         for (int[] ints : dp) {
             System.out.println();
             for (int anInt : ints) {

@@ -11,6 +11,8 @@ import java.util.List;
 public class LongestCommonSubstring {
 
     public List<String> findSubstring(String str1, String str2) {
+        System.out.println("First String: " + str1);
+        System.out.println("Second String: " + str2);
         int max = 0;
         List<String> subString = new ArrayList<>();
         int dp[][] = new int[str1.length()][str2.length()];

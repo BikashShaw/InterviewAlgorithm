@@ -114,7 +114,7 @@ public class BinaryTree {
         return 1 + Math.min(minDepth(rootNode.leftChild), minDepth(rootNode.rightChild));
     }
 
-    //O(n) - n is nuber of nodes
+    //O(n) - n is number of nodes
     public int findHeight(BinaryTreeNode rootNode) {
         if(rootNode == null) {
             return -1;

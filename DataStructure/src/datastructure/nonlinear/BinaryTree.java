@@ -138,6 +138,7 @@ public class BinaryTree {
         return left != null ? left : right != null ? right : root;
     }
 
+    //Time Complexity O(n) - n is number of nodes in tree
     public boolean isBinarySearchTree(BinaryTreeNode node, int min, int max) {
         if(node == null) {
             return true;

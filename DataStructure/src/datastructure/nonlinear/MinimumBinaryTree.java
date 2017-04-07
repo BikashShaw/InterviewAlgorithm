@@ -45,6 +45,19 @@ public class MinimumBinaryTree {
 
         System.out.println("Is Binary Search Tree: " +  binaryTree.isBinarySearchTree(binaryTree.root,  Integer.MIN_VALUE, Integer.MAX_VALUE));
 
+        BinaryTree bTree1 = minBST.createMinimumHeightBinaryTree(new int[]{5,8,9,10,11,12,13});
+        System.out.println("***");
+        bTree1.inOrderTraverse(bTree1.root);
+        System.out.println("---");
+        bTree1.preOrderTraverse(bTree1.root);
+        BinaryTree bTree2 = minBST.createMinimumHeightBinaryTree(new int[]{8,9,10});
+        System.out.println("***");
+        bTree2.inOrderTraverse(bTree2.root);
+        System.out.println("---");
+        bTree1.preOrderTraverse(bTree2.root);
+        System.out.println("Is sub tree: " + bTree1.isSubTree(bTree1.root, bTree2.root));
+        ;
+
 
     }
 }

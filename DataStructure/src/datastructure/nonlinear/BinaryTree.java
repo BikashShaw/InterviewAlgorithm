@@ -126,7 +126,7 @@ public class BinaryTree {
         return Math.max(leftHeight, rightHeight);
     }
 
-    //O(log(n))
+    //O(n)
     public BinaryTreeNode lowestCommonAncestor(BinaryTreeNode root, BinaryTreeNode p, BinaryTreeNode q) {
         if(root == null || p == null || q == null) {
             return root;
@@ -151,6 +151,31 @@ public class BinaryTree {
         return  isBinarySearchTree(node.leftChild, min, node.data+1) && isBinarySearchTree(node.rightChild, node.data +1, max);
     }
 
+    public boolean isSubTree(BinaryTreeNode treeNode, BinaryTreeNode subTreeNode) {
+        if (treeNode == null || subTreeNode == null) {
+            return  false;
+        }
+        if(treeNode.data == subTreeNode.data) {
+            return compareEachNode(treeNode, subTreeNode);
+        } else {
+            return isSubTree(treeNode.leftChild, subTreeNode) || isSubTree(treeNode.rightChild, subTreeNode);
+        }
+
+
+    }
+
+    private boolean compareEachNode(BinaryTreeNode treeNode, BinaryTreeNode subTreeNode) {
+        if(subTreeNode == null) {
+            return true;
+        } else if(treeNode == null) {
+            return false;
+        } {
+            return treeNode.data == subTreeNode.data && compareEachNode(treeNode.leftChild, subTreeNode.leftChild)
+                    && compareEachNode(treeNode.rightChild, subTreeNode.rightChild);
+        }
+
+
+    }
 
 
     public static void main(String[] args) {
@@ -190,6 +215,7 @@ public class BinaryTree {
         binarySearchTree.binarySearchTreeInsert(29);
         return binarySearchTree;
     }
+
 
     private static void performTraverse(BinaryTree binarySearchTree) {
         System.out.println("Pre-Order Traverse");

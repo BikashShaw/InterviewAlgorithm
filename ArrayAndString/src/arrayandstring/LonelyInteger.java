@@ -6,7 +6,7 @@ package arrayandstring;
  */
 public class LonelyInteger {
 
-    int findLonley(int a[]) {
+    int findLonely(int a[]) {
         int result = 0;
         for (int i : a) {
             result ^= i;
@@ -15,6 +15,6 @@ public class LonelyInteger {
     }
 
     public static void main(String[] args) {
-        System.out.println(new LonelyInteger().findLonley(new int[] {9, 1, 2, 3, 2, 9, 1, 7, 7}));
+        System.out.println(new LonelyInteger().findLonely(new int[] {9, 1, 2, 3, 2, 9, 1, 7, 7}));
     }
 }

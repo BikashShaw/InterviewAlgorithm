@@ -24,12 +24,7 @@ public class SortByFrequency {
             }
         }
 
-        Collections.sort(sortedList, new Comparator<Character>() {
-            @Override
-            public int compare(Character o1, Character o2) {
-                return characterIntegerHashtable.get(o2) - characterIntegerHashtable.get(o1) ;
-            }
-        });
+        Collections.sort(sortedList, (o1, o2) -> characterIntegerHashtable.get(o2) - characterIntegerHashtable.get(o1));
 
         for (Character character : sortedList) {
             sortedStrint.append(character);

@@ -1,6 +1,8 @@
 package datastructure.nonlinear;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 /**
  * Created by Bikash on 3/11/2017.
@@ -91,6 +93,32 @@ public class BinaryTree {
 
         if (!(rootNode.rightChild == null && rootNode.leftChild != null)) {
             sumRootToLeaf(rootNode.rightChild, rootNode.data + sum);
+        }
+    }
+
+    //Find Smallest and Largest sum
+    public void sumMinMax(BinaryTreeNode rootNode, int sum, Map<String, Integer> minMaxSumMap) {
+        if (rootNode == null) {
+            if(minMaxSumMap.get("minSum") > sum) {
+                minMaxSumMap.put("minSum", sum);
+                System.out.println("Current Smallest Sum: " + sum);
+            }
+
+            if(minMaxSumMap.get("maxSum") < sum) {
+                minMaxSumMap.put("maxSum", sum);
+                System.out.println("Current Largest Sum: " + sum);
+            }
+
+            System.out.println("Sum: " + sum);
+            return;
+        }
+
+        if (!(rootNode.leftChild == null && rootNode.rightChild != null)) {
+            sumMinMax(rootNode.leftChild, rootNode.data + sum, minMaxSumMap);
+        }
+
+        if (!(rootNode.rightChild == null && rootNode.leftChild != null)) {
+            sumMinMax(rootNode.rightChild, rootNode.data + sum, minMaxSumMap);
         }
     }
 
@@ -186,6 +214,11 @@ public class BinaryTree {
         System.out.println("Is Binary Search tree: " + binarySearchTree.isBinarySearchTree(binarySearchTree.root, Integer.MIN_VALUE, Integer.MAX_VALUE));
 
         binarySearchTree.sumRootToLeaf(binarySearchTree.root, 0);
+
+        Map<String, Integer> map = new HashMap<>();
+        map.put("minSum",Integer.MAX_VALUE);
+        map.put("maxSum",Integer.MIN_VALUE);
+        binarySearchTree.sumMinMax(binarySearchTree.root, 0, map);
     }
 
     private static void insertAndTraverse() {

@@ -10,7 +10,7 @@ import java.util.*;
 public class SortByFrequency {
 
     public static String sort(String givenString) {
-        StringBuilder sortedStrint = new StringBuilder();
+        StringBuilder sortedString = new StringBuilder();
         final Hashtable<Character, Integer> characterIntegerHashtable = new Hashtable<>();
         List<Character> sortedList = new ArrayList<>();
 
@@ -27,9 +27,9 @@ public class SortByFrequency {
         Collections.sort(sortedList, (o1, o2) -> characterIntegerHashtable.get(o2) - characterIntegerHashtable.get(o1));
 
         for (Character character : sortedList) {
-            sortedStrint.append(character);
+            sortedString.append(character);
         }
-        return sortedStrint.toString();
+        return sortedString.toString();
     }
 
     public static void main(String[] args) {

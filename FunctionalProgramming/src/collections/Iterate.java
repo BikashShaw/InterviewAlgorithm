@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class Iterate {
     private final List<String> friends = Arrays.asList("Brian", "Nate", "Neal", "Raju", "Sara", "Scott");
 
-    public void iterateWithComsumer() {
+    public void iterateWithConsumer() {
         System.out.println("Using Anonymous Inner Class:");
         friends.forEach(new Consumer<String>() {
             @Override
@@ -50,7 +50,7 @@ public class Iterate {
 
     public static void main(String[] args) {
         Iterate iterate = new Iterate();
-        iterate.iterateWithComsumer();
+        iterate.iterateWithConsumer();
         iterate.iterateWithLambda();
         iterate.iterateWithMethodReference();
         iterate.iterateWithMethodReferenceUpperCaseTransform();

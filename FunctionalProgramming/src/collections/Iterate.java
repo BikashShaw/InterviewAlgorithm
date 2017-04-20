@@ -3,6 +3,7 @@ package collections;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -10,6 +11,8 @@ import java.util.stream.Collectors;
  */
 public class Iterate {
     private final List<String> friends = Arrays.asList("Brian", "Nate", "Neal", "Raju", "Sara", "Scott");
+    private final List<String> editors = Arrays.asList("Brian", "Jackie", "John", "Mike");
+
 
     public void iterateWithConsumer() {
         System.out.println("Using Anonymous Inner Class:");
@@ -47,6 +50,16 @@ public class Iterate {
         subList.forEach(System.out::println);
     }
 
+    public void findElementsWithPredicate(String startsWith) {
+        System.out.println("Find Elements Starts With " + startsWith +" Using Predicate:");
+
+        final Predicate<String> startsWithPredicate = name -> name.startsWith(startsWith);
+
+        System.out.println("Count Of Elements Starts With " + startsWith +" In List \"friends\":" + friends.stream().filter(startsWithPredicate).count());
+        System.out.println("Count Of Elements Starts With " + startsWith +" In List \"editors\":" + editors.stream().filter(startsWithPredicate).count());
+
+    }
+
 
     public static void main(String[] args) {
         Iterate iterate = new Iterate();
@@ -56,5 +69,7 @@ public class Iterate {
         iterate.iterateWithMethodReferenceUpperCaseTransform();
         iterate.findElements("N");
         iterate.findElements("S");
+        iterate.findElementsWithPredicate("B");
+        iterate.findElementsWithPredicate("S");
     }
 }

@@ -8,11 +8,11 @@ import java.util.Arrays;
  */
 public class LonelyInteger {
 
-    int findLonely(Integer a[]) {
-        return Arrays.stream(a).reduce((left, right) -> left ^ right).get();
+    int findLonely(int a[]) {
+        return Arrays.stream(a).reduce((left, right) -> left ^ right).getAsInt();
     }
 
     public static void main(String[] args) {
-        System.out.println(new LonelyInteger().findLonely(new Integer[]{10, 9, 1, 2, 3, 3, 11, 2, 9, 1, 7, 7, 10}));
+        System.out.println(new LonelyInteger().findLonely(new int[]{10, 9, 1, 2, 3, 3, 11, 2, 9, 1, 7, 7, 10}));
     }
 }

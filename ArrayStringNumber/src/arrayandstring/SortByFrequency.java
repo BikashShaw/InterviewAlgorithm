@@ -24,8 +24,12 @@ public class SortByFrequency {
             }
         }
 
-        Collections.sort(sortedList, (o1, o2) -> characterIntegerHashtable.get(o2) - characterIntegerHashtable.get(o1));
+        sortedList.sort((o1, o2) ->  {
 
+            Integer o2Cnt = characterIntegerHashtable.get(o2);
+            Integer o1Cnt = characterIntegerHashtable.get(o1);
+            return o2Cnt.equals(o1Cnt) ? o1  - o2 : o2Cnt - o1Cnt;
+        });
         for (Character character : sortedList) {
             sortedString.append(character);
         }
@@ -33,6 +37,6 @@ public class SortByFrequency {
     }
 
     public static void main(String[] args) {
-        System.out.println(sort("DCCCCCAABBB"));
+        System.out.println(sort("loveleetcode"));
     }
 }

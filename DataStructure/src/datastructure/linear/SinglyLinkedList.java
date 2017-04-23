@@ -103,6 +103,27 @@ public class SinglyLinkedList {
         this.head =  previous;
     }
 
+    public Node delete(Node head, int target) {
+        Node temp = head;
+
+        if(temp == null) {
+            return temp;
+        }
+
+        while (temp.next != null) {
+            if(temp.next.data == target) {
+                temp.next = temp.next.next;
+                break;
+            }
+            else {
+                temp = temp.next;
+            }
+        }
+
+        return head;
+
+    }
+
     public static void main(String[] args) {
         SinglyLinkedList linkedList = new SinglyLinkedList();
         linkedList.traverse();
@@ -128,6 +149,9 @@ public class SinglyLinkedList {
         linkedList.traverse();
         System.out.println("**Iterative Reverse**");
         linkedList.reverse();
+        linkedList.traverse();
+        System.out.println("**Deleting 3**");
+        linkedList.head = linkedList.delete(linkedList.head, 3);
         linkedList.traverse();
     }
 }

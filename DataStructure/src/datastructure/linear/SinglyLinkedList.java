@@ -1,5 +1,7 @@
 package datastructure.linear;
 
+import java.util.Arrays;
+
 /**
  * Created by Bikash on 3/11/2017.
  */
@@ -104,24 +106,46 @@ public class SinglyLinkedList {
     }
 
     public Node delete(Node head, int target) {
+        if(head == null) {
+            return head;
+        }
+
+        while(head != null && head.data == target) {
+            head = head.next;
+        }
+
         Node temp = head;
 
-        if(temp == null) {
-            return temp;
-        }
+        if(temp!=null) {
+            while (temp.next != null) {
+                if(temp.next.data == target) {
+                    temp.next = temp.next.next;
 
-        while (temp.next != null) {
-            if(temp.next.data == target) {
-                temp.next = temp.next.next;
-                break;
-            }
-            else {
-                temp = temp.next;
+                }
+                else {
+                    temp = temp.next;
+                }
             }
         }
-
         return head;
+    }
 
+    /**
+     * Delete Node in a Linked List
+     * <strong>URL: https://leetcode.com/problems/delete-node-in-a-linked-list/#/description</strong>
+     * @param node
+     */
+    public void deleteNode(Node node) {
+        if(node == null) {
+            return;
+        }
+        Node pre = node;
+        while(node.next !=null) {
+            pre = node;
+            node.data = node.next.data;
+            node = node.next;
+        }
+        pre.next = null;
     }
 
     public static void main(String[] args) {

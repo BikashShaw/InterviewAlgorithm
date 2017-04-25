@@ -148,6 +148,30 @@ public class SinglyLinkedList {
         pre.next = null;
     }
 
+
+
+    /**
+     * Remove Duplicates from Sorted List <br />
+     * <strong>URL: </strong>https://leetcode.com/problems/remove-duplicates-from-sorted-list/#/description
+     * @param head - Head of the list
+     * @return
+     */
+    public Node deleteDuplicatesFromSortedList(Node head) {
+        Node mover = head;
+        if(mover == null) {
+            return head;
+        }
+        while(mover.next != null) {
+            if(mover.data == mover.next.data) {
+                mover.next = mover.next.next;
+            } else {
+                mover = mover.next;
+            }
+        }
+
+        return head;
+    }
+
     public static void main(String[] args) {
         SinglyLinkedList linkedList = new SinglyLinkedList();
         linkedList.traverse();

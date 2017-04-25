@@ -7,37 +7,40 @@ package arrayandstring;
 public class RomanToInteger {
 
     public static int convert(String roman) {
-        int result = 0;
-
-        for (int i = roman.length() -1 ; i >=0 ; i--) {
-            char c = roman.charAt(i);
-
-            switch (c) {
-                case 'I' :
-                    result += result >= 5 ? -1 : 1;
+        int nums[]=new int[roman.length()];
+        for(int i=0;i<roman.length();i++){
+            switch (roman.charAt(i)){
+                case 'M':
+                    nums[i]=1000;
                     break;
-                case 'V' :
-                    result += 5;
+                case 'D':
+                    nums[i]=500;
+                    break;
+                case 'C':
+                    nums[i]=100;
+                    break;
+                case 'L':
+                    nums[i]=50;
                     break;
                 case 'X' :
-                    result += result >= 10 ? -10 : 10;
+                    nums[i]=10;
                     break;
-                case 'L' :
-                    result += result >= 50 ? -50 : 50;
+                case 'V':
+                    nums[i]=5;
                     break;
-                case 'C' :
-                    result += result >= 100 ? -100 : 100;
-                    break;
-                case 'D' :
-                    result += 500;
-                    break;
-                case 'M' :
-                    result +=1000;
+                case 'I':
+                    nums[i]=1;
                     break;
             }
         }
-
-        return result;
+        int sum=0;
+        for(int i=0;i<nums.length-1;i++){
+            if(nums[i]<nums[i+1])
+                sum-=nums[i];
+            else
+                sum+=nums[i];
+        }
+        return sum+nums[nums.length-1];
     }
 
     public static void main(String[] args) {
@@ -50,5 +53,8 @@ public class RomanToInteger {
         System.out.println("LXVIII : " + RomanToInteger.convert("LXVIII"));
         System.out.println("LXVII : " + RomanToInteger.convert("LXVII"));
         System.out.println("MMMDXXXIX : " + RomanToInteger.convert("MMMDXXXIX"));
+        System.out.println("IX : " + RomanToInteger.convert("IX"));
+        System.out.println("XI : " + RomanToInteger.convert("XI"));
+        System.out.println("DCXXI : " + RomanToInteger.convert("DCXXI"));
     }
 }

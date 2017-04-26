@@ -7,25 +7,22 @@ package arrayandstring.anagram;
 public class FindAnagram {
 
     public static boolean isAnagram(String str1, String str2) {
-        boolean status = false;
+        int count[] = new int[26];
 
-        if(str1.length() != str2.length()) {
-            return status;
+        for (char c : str1.toCharArray()) {
+            count[c - 'a']++;
+        }
+        for (char c : str2.toCharArray()) {
+            count[c - 'a']--;
         }
 
-        StringBuilder sb = new StringBuilder(str2);
-        for (int i = 0; i < str1.length(); i++) { //O(n)
-            char c = str1.charAt(i);
-            int index = sb.indexOf("" + c);
-            if(index == -1) {
-                break;
+        for (int i : count) {
+            if(i!=0) {
+                return false;
             }
-            sb.deleteCharAt(index);
         }
-        if(sb.length() == 0) {
-            status = true;
-        }
-        return status;
+
+        return true;
     }
 
     public static void main(String[] args) {

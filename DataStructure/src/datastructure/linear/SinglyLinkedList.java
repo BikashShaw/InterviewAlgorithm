@@ -1,7 +1,5 @@
 package datastructure.linear;
 
-import java.util.Arrays;
-
 /**
  * Created by Bikash on 3/11/2017.
  */
@@ -10,7 +8,7 @@ public class SinglyLinkedList {
 
     //Time Complexity: O(1)
     public void insertFirst(int data) {
-        if(head == null) {
+        if (head == null){
             head = new Node(data);
         } else {
             Node temp = new Node(data);
@@ -18,10 +16,11 @@ public class SinglyLinkedList {
             head = temp;
         }
     }
+
     //Time Complexity: O(n)
     public void insertLast(int data) {
-        Node temp  = new Node(data);
-        if(head == null) {
+        Node temp = new Node(data);
+        if (head == null){
             head = temp;
         }
         Node tempHead = head;
@@ -37,8 +36,8 @@ public class SinglyLinkedList {
 
         Node tempHead = head;
 
-        while (tempHead != null){
-            if(tempHead.data == element) {
+        while (tempHead != null) {
+            if (tempHead.data == element){
                 found = true;
                 break;
             }
@@ -50,7 +49,7 @@ public class SinglyLinkedList {
 
     //Time Complexity: O(n)
     public void traverse() {
-        if(head == null) {
+        if (head == null){
             System.out.println("Empty List!");
             return;
         }
@@ -65,19 +64,19 @@ public class SinglyLinkedList {
     }
 
     public void traverseReverse(Node node) {
-        if(node == null) {
+        if (node == null){
             return;
         }
         traverseReverse(node.next);
         System.out.print(node.data + " ");
     }
 
-    public  Node reverse(Node node) {
-        if(node == null) { // No Node
+    public Node reverse(Node node) {
+        if (node == null){ // No Node
             return null;
         }
 
-        if(node.next == null) { //Only 1 node
+        if (node.next == null){ //Only 1 node
             return node;
         }
 
@@ -92,7 +91,7 @@ public class SinglyLinkedList {
         return reverseNode;
     }
 
-    public  void reverse() {
+    public void reverse() {
         Node current = this.head;
         Node previous = null;
 
@@ -102,27 +101,26 @@ public class SinglyLinkedList {
             previous = current;
             current = next;
         }
-        this.head =  previous;
+        this.head = previous;
     }
 
     public Node delete(Node head, int target) {
-        if(head == null) {
+        if (head == null){
             return head;
         }
 
-        while(head != null && head.data == target) {
+        while (head != null && head.data == target) {
             head = head.next;
         }
 
         Node temp = head;
 
-        if(temp!=null) {
+        if (temp != null){
             while (temp.next != null) {
-                if(temp.next.data == target) {
+                if (temp.next.data == target){
                     temp.next = temp.next.next;
 
-                }
-                else {
+                } else {
                     temp = temp.next;
                 }
             }
@@ -133,14 +131,15 @@ public class SinglyLinkedList {
     /**
      * Delete Node in a Linked List
      * <strong>URL: https://leetcode.com/problems/delete-node-in-a-linked-list/#/description</strong>
+     *
      * @param node
      */
     public void deleteNode(Node node) {
-        if(node == null) {
+        if (node == null){
             return;
         }
         Node pre = node;
-        while(node.next !=null) {
+        while (node.next != null) {
             pre = node;
             node.data = node.next.data;
             node = node.next;
@@ -149,20 +148,20 @@ public class SinglyLinkedList {
     }
 
 
-
     /**
      * Remove Duplicates from Sorted List <br />
      * <strong>URL: </strong>https://leetcode.com/problems/remove-duplicates-from-sorted-list/#/description
+     *
      * @param head - Head of the list
      * @return
      */
     public Node deleteDuplicatesFromSortedList(Node head) {
         Node mover = head;
-        if(mover == null) {
+        if (mover == null){
             return head;
         }
-        while(mover.next != null) {
-            if(mover.data == mover.next.data) {
+        while (mover.next != null) {
+            if (mover.data == mover.next.data){
                 mover.next = mover.next.next;
             } else {
                 mover = mover.next;
@@ -170,6 +169,24 @@ public class SinglyLinkedList {
         }
 
         return head;
+    }
+
+    public boolean hasCycle(Node head) {
+        if (head == null || head.next == null){
+            return false;
+        }
+
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void main(String[] args) {

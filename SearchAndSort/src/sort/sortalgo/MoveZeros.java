@@ -19,15 +19,15 @@ public class MoveZeros {
     //Like bubble sort
     private static void moveZero(int[] nums) {
         int n = nums.length;
-        boolean swaped = false;
+        boolean swapped = false;
         for (int i = 1; i < n; i++) {
             for (int j = 0; j < n - i; j++) {
                 if (nums[j] == 0){
-                    swaped = true;
+                    swapped = true;
                     swapAndPrint(nums, j, j + 1);
                 }
             }
-            if (!swaped){
+            if (!swapped){
                 break;
             }
         }

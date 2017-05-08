@@ -5,32 +5,32 @@ package datastructure.linear;
  * Created by Bikash on 3/19/2017.
  */
 
-class RandNote {
-    String data;
-    RandNote next;
-    RandNote random;
+class RandomListNode {
+    String label;
+    RandomListNode next;
+    RandomListNode random;
 
-    public  RandNote(String data) {
-        this.data = data;
+    public RandomListNode(String data) {
+        this.label = data;
     }
 
 }
 
 public class RandomLinkedList {
-    public static RandNote clone(RandNote oldHead) {
-        RandNote temp = oldHead;
-        RandNote newHead = null;
+    public static RandomListNode clone(RandomListNode oldHead) {
+        RandomListNode temp = oldHead;
+        RandomListNode newHead = null;
         int counter = 1;
         //Create new nodes
         while (temp != null) {
-            RandNote rn = new RandNote(temp.data + counter);
+            RandomListNode rn = new RandomListNode(temp.label + counter);
             rn.next = temp.next;
             temp.next = rn;
             temp = rn.next;
             counter++;
         }
         temp = oldHead;
-        RandNote newTemp = temp.next;
+        RandomListNode newTemp = temp.next;
         //Assign random pointers
         while (temp != null) {
             newTemp.random = temp.random.next;
@@ -59,11 +59,11 @@ public class RandomLinkedList {
     }
 
     public static void main(String[] args) {
-        RandNote oldHead = null;
-        RandNote r1 = new RandNote("A");
-        RandNote r2 = new RandNote("B");
-        RandNote r3 = new RandNote("C");
-        RandNote r4 = new RandNote("D");
+        RandomListNode oldHead = null;
+        RandomListNode r1 = new RandomListNode("A");
+        RandomListNode r2 = new RandomListNode("B");
+        RandomListNode r3 = new RandomListNode("C");
+        RandomListNode r4 = new RandomListNode("D");
         r1.next = r2;
         r1.random = r3;
 
@@ -75,19 +75,19 @@ public class RandomLinkedList {
         r4.random = r1;
 
         oldHead = r1;
-        RandNote newHead = clone(r1);
+        RandomListNode newHead = clone(r1);
 
-        RandNote tmp = oldHead;
+        RandomListNode tmp = oldHead;
         System.out.println("Old Values");
         while (tmp != null) {
-            System.out.println(tmp.data + " random-> " + tmp.random.data);
+            System.out.println(tmp.label + " random-> " + tmp.random.label);
             tmp = tmp.next;
         }
 
         tmp = newHead;
         System.out.println("New Values");
         while (tmp != null) {
-            System.out.println(tmp.data + " random-> " + tmp.random.data);
+            System.out.println(tmp.label + " random-> " + tmp.random.label);
             tmp = tmp.next;
         }
     }

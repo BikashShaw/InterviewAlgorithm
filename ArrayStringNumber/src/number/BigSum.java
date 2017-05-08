@@ -54,5 +54,7 @@ public class BigSum {
     public static void main(String[] args) {
         int nums[] = {1001458909,1004570889,1007019111, 1003302837, 1002514638, 1006431461, 1002575010, 1007514041, 1007548981, 1004402249};
         System.out.println("Sum of " + Arrays.toString(nums) + " is " + sum(nums));
+        nums = new int[]{Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE};
+        System.out.println("Sum of " + Arrays.toString(nums) + " is " + sum(nums));
     }
 }

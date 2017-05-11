@@ -21,17 +21,17 @@ public class Graph {
         }
     }
     // Function to add an edge into the graph
-    public void addEdge(int v, int w) {
-        adj[v].add(w);
+    public void addEdge(int src, int dest) {
+        adj[src].add(dest);
     }
 
-    public void breadthFirstSearch(int s) {
+    public void breadthFirstSearch(int origin) {
         //size of the visited array is equal to number of vertices
         boolean visited[] = new boolean[this.vertices];
         //Created a queue for node we want to traverse
         Queue<Integer> queue = new LinkedList<>();
         //Add the start node in queue
-        queue.add(s);
+        queue.add(origin);
 
         //Loop still queue is not empty
         while (!queue.isEmpty()) {
@@ -54,11 +54,11 @@ public class Graph {
         }
     }
 
-    public void depthFirstSearch(int s, boolean visited[]) {
-        visited[s] = true;
-        System.out.println(s);
+    public void depthFirstSearch(int origin, boolean visited[]) {
+        visited[origin] = true;
+        System.out.println(origin);
 
-        Iterator<Integer> iterator = this.adj[s].iterator();
+        Iterator<Integer> iterator = this.adj[origin].iterator();
         while (iterator.hasNext()) {
             Integer next = iterator.next();
             if(!visited[next]){

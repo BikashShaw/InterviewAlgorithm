@@ -40,7 +40,6 @@ public class MostVisitedUrlSequence {
                     sequenceCounterMap.put(urlSequenceKey, 1);
                 }
             }
-
         });
 
         System.out.println(sequenceCounterMap);

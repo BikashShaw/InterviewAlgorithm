@@ -3,46 +3,46 @@ package datastructure.linear;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LRU2Cache<CK, CV> {
+class LRU2Node<K, V> {
+    K key;
+    V value;
+    LRU2Node<K, V> next = null;
+    LRU2Node<K, V> prev = null;
+
+    LRU2Node(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "LRU2Node{" +
+                "key=" + key +
+                ", value=" + value +
+                '}';
+    }
+}
+
+public class LRU2Cache<K, V> {
 
     private final Integer maxSize;
 
-    private LRU2Node<CK, CV> head;
-    private LRU2Node<CK, CV> tail;
+    private LRU2Node<K, V> head;
+    private LRU2Node<K, V> tail;
 
-    class LRU2Node<NK, NV> {
-        NK key;
-        NV value;
-        LRU2Node<NK, NV> next = null;
-        LRU2Node<NK, NV> prev = null;
-
-        LRU2Node(NK key, NV value) {
-            this.key = key;
-            this.value = value;
-        }
-
-        @Override
-        public String toString() {
-            return "LRU2Node{" +
-                    "key=" + key +
-                    ", value=" + value +
-                    '}';
-        }
-    }
-
-    private Map<CK, LRU2Node<CK, CV>> lru2Map;
+    private Map<K, LRU2Node<K, V>> lru2Map;
 
     private LRU2Cache(Integer maxSize) {
         this.maxSize = maxSize;
         lru2Map = new HashMap<>(this.maxSize);
     }
 
-    private LRU2Node<CK, CV> get(CK key) {
+    private LRU2Node<K, V> get(K key) {
         return lru2Map.get(key);
     }
 
-    private LRU2Node<CK, CV> put(CK key, CV value) {
-        LRU2Node<CK, CV> node;
+    private LRU2Node<K, V> put(K key, V value) {
+        LRU2Node<K, V> node;
         if (lru2Map.isEmpty()) {
             node = new LRU2Node<>(key, value);
             lru2Map.put(key, node);
@@ -91,7 +91,7 @@ public class LRU2Cache<CK, CV> {
         return node;
     }
 
-    private LRU2Node<CK, CV> updateExistingNode(CK key, CV value, LRU2Node<CK, CV> node) {
+    private LRU2Node<K, V> updateExistingNode(K key, V value, LRU2Node<K, V> node) {
         if (head.key.equals(key)) {
             node = updateHead(key, value);
         } else if (tail.key.equals(key)) {
@@ -102,7 +102,7 @@ public class LRU2Cache<CK, CV> {
         return node;
     }
 
-    private LRU2Node<CK, CV> updateNodeMovedToHead(CK key, CV value, LRU2Node<CK, CV> node) {
+    private LRU2Node<K, V> updateNodeMovedToHead(K key, V value, LRU2Node<K, V> node) {
         node.prev.next = node.next;
         node.next.prev = node.prev;
         node.next = head;
@@ -114,8 +114,8 @@ public class LRU2Cache<CK, CV> {
         return node;
     }
 
-    private LRU2Node<CK, CV> updateTailMovedToHead(CK key, CV value) {
-        LRU2Node<CK, CV> node = tail;
+    private LRU2Node<K, V> updateTailMovedToHead(K key, V value) {
+        LRU2Node<K, V> node = tail;
         tail = tail.prev;
         tail.next = null;
         node.prev = null;
@@ -127,8 +127,8 @@ public class LRU2Cache<CK, CV> {
         return node;
     }
 
-    private LRU2Node<CK, CV> updateHead(CK key, CV value) {
-        LRU2Node<CK, CV> node = head;
+    private LRU2Node<K, V> updateHead(K key, V value) {
+        LRU2Node<K, V> node = head;
         node.value = value;
         lru2Map.replace(key, node);
         return node;
@@ -180,7 +180,7 @@ public class LRU2Cache<CK, CV> {
     }
 
     private void print() {
-        LRU2Node<CK, CV> node = head;
+        LRU2Node<K, V> node = head;
         while (node != null) {
             System.out.println(node);
             node = node.next;

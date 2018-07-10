@@ -21,7 +21,7 @@ public class RandomLinkedList {
         RandomListNode temp = oldHead;
         RandomListNode newHead = null;
         int counter = 1;
-        //Create new nodes
+        //Create new nodes - Single List
         while (temp != null) {
             RandomListNode rn = new RandomListNode(temp.label + counter);
             rn.next = temp.next;
@@ -29,6 +29,8 @@ public class RandomLinkedList {
             temp = rn.next;
             counter++;
         }
+        temp = oldHead;
+        print(temp);
         temp = oldHead;
         RandomListNode newTemp = temp.next;
         //Assign random pointers
@@ -56,6 +58,15 @@ public class RandomLinkedList {
         }
 
         return newHead;
+    }
+
+    private static void print(RandomListNode temp) {
+        while (temp!= null) {
+            System.out.print(temp.label + " ");
+            temp = temp.next;
+        }
+
+        System.out.println();
     }
 
     public static void main(String[] args) {

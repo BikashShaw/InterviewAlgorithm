@@ -2,6 +2,7 @@ package datastructure.linear;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.LongStream;
 
 class LRU2Node<K, V> {
     K key;
@@ -136,47 +137,55 @@ public class LRU2Cache<K, V> {
 
 
     public static void main(String[] args) {
-        LRU2Cache<String, Integer> lru2Cache = new LRU2Cache<>(5);
-        System.out.println(lru2Cache);
-        lru2Cache.put("A", 1);
-        System.out.println(lru2Cache);
-        lru2Cache.put("A", 2);
-        System.out.println(lru2Cache);
-        lru2Cache.put("B", 1);
-        System.out.println(lru2Cache);
+        LRU2Cache<String, Integer> cacheOne = new LRU2Cache<>(5);
+        System.out.println(cacheOne);
+        cacheOne.put("A", 1);
+        System.out.println(cacheOne);
+        cacheOne.put("A", 2);
+        System.out.println(cacheOne);
+        cacheOne.put("B", 1);
+        System.out.println(cacheOne);
 
-        lru2Cache.put("A", 1);
-        System.out.println(lru2Cache);
-        lru2Cache.put("B", 2);
-        System.out.println(lru2Cache);
-        lru2Cache.put("C", 3);
-        System.out.println(lru2Cache);
+        cacheOne.put("A", 1);
+        System.out.println(cacheOne);
+        cacheOne.put("B", 2);
+        System.out.println(cacheOne);
+        cacheOne.put("C", 3);
+        System.out.println(cacheOne);
 
-        lru2Cache.put("C", 4);
-        System.out.println(lru2Cache);
-        lru2Cache.put("C", 3);
-        System.out.println(lru2Cache);
+        cacheOne.put("C", 4);
+        System.out.println(cacheOne);
+        cacheOne.put("C", 3);
+        System.out.println(cacheOne);
 
-        lru2Cache.put("D", 4);
-        System.out.println(lru2Cache);
+        cacheOne.put("D", 4);
+        System.out.println(cacheOne);
 
-        lru2Cache.put("B", 5);
-        System.out.println(lru2Cache);
+        cacheOne.put("B", 5);
+        System.out.println(cacheOne);
 
-        lru2Cache.put("E", 6);
-        System.out.println(lru2Cache);
+        cacheOne.put("E", 6);
+        System.out.println(cacheOne);
 
-        lru2Cache.put("D", 7);
-        System.out.println(lru2Cache);
+        cacheOne.put("D", 7);
+        System.out.println(cacheOne);
 
-        lru2Cache.put("F", 8);
-        System.out.println(lru2Cache);
+        cacheOne.put("F", 8);
+        System.out.println(cacheOne);
 
-        lru2Cache.put("D", 9);
-        System.out.println(lru2Cache);
+        cacheOne.put("D", 9);
+        System.out.println(cacheOne);
 
-        lru2Cache.put("G", 10);
-        System.out.println(lru2Cache);
+        cacheOne.put("G", 10);
+        System.out.println(cacheOne);
+
+        LRU2Cache<Long, Double> cacheTwo = new LRU2Cache<>(7);
+
+        LongStream.range(1L, 100L).forEach(key -> {
+            cacheTwo.put(key, Math.random());
+            System.out.println(cacheTwo);
+        });
+
     }
 
     private void print() {

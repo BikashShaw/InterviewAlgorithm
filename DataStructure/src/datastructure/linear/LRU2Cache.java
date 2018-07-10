@@ -87,7 +87,6 @@ public class LRU2Cache<CK, CV> {
             } else {
                 node = updateExistingNode(key, value, node);
             }
-
         }
         return node;
     }
@@ -100,9 +99,7 @@ public class LRU2Cache<CK, CV> {
         } else {
             node = updateNodeMovedToHead(key, value, node);
         }
-
         return node;
-
     }
 
     private LRU2Node<CK, CV> updateNodeMovedToHead(CK key, CV value, LRU2Node<CK, CV> node) {
@@ -180,8 +177,6 @@ public class LRU2Cache<CK, CV> {
 
         lru2Cache.put("G", 10);
         System.out.println(lru2Cache);
-
-
     }
 
     private void print() {

@@ -12,7 +12,7 @@ import java.util.Random;
 public class ProducerConsumer implements IProducerConsumer {
     public static int MAX_QUEUE_SIZE = 10;
     LinkedList<Integer> queue = new LinkedList<>();
-    Object lock;
+    final Object lock;
 
     public ProducerConsumer() {
         lock = new Object();
@@ -30,8 +30,8 @@ public class ProducerConsumer implements IProducerConsumer {
                 int e = random.nextInt(1000);
                 queue.add(e);
                 System.out.println("Added: " + e + " Current queue size: " + queue.size());
-                lock.notify();
                 Thread.sleep(500);
+                lock.notify();
             }
         }
     }
@@ -44,8 +44,8 @@ public class ProducerConsumer implements IProducerConsumer {
                 }
                 Integer e = queue.removeFirst();
                 System.out.println("Removed: " + e + " Current queue size: " + queue.size());
-                lock.notify();
                 Thread.sleep(500);
+                lock.notify();
             }
 
         }

@@ -1,6 +1,8 @@
 package arrayandstring.leetcode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class LongestNonRepeatingSubstring {
 
@@ -20,18 +22,21 @@ public class LongestNonRepeatingSubstring {
         int maxSubString = 0;
         char[] chars = s.toCharArray();
 
+        List<Character> subStr = new ArrayList<>();
         for (int i = 0; i < chars.length; i++) {
             Arrays.fill(visitCount, false);
-            StringBuilder subStringBuilder = new StringBuilder();
+            subStr.clear();
             for (int j = i; j < chars.length; j++) {
                 char ch = chars[j];
-                if (visitCount[ch - ' ']) {
+                int idx = ch - ' ';
+                if (visitCount[idx]) {
                     break;
                 } else {
-                    subStringBuilder.append(ch);
-                    visitCount[ch - ' '] = true;
-                    if (subStringBuilder.length() > maxSubString) {
-                        maxSubString = subStringBuilder.length();
+                    subStr.add(ch);
+                    visitCount[idx] = true;
+                    int size = subStr.size();
+                    if (size > maxSubString) {
+                        maxSubString = size;
                     }
                 }
 

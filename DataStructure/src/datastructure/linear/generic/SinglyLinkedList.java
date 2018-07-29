@@ -2,17 +2,18 @@ package datastructure.linear.generic;
 
 import java.util.Arrays;
 
-class Node<T> {
-    T value;
-    Node<T> next;
-
-    Node(T value) {
-        this.value = value;
-        this.next = null;
-    }
-}
 
 public class SinglyLinkedList<E> {
+
+    private class Node<T> {
+        T value;
+        Node<T> next;
+
+        Node(T value) {
+            this.value = value;
+            this.next = null;
+        }
+    }
 
     Node<E> head;
 

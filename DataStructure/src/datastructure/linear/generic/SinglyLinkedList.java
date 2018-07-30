@@ -36,6 +36,7 @@ public class SinglyLinkedList<E> {
             }
             node.next = new Node<>(value);
         }
+        this.size++;
     }
 
     void addAll(E... values) {
@@ -46,6 +47,7 @@ public class SinglyLinkedList<E> {
         Node<E> node = new Node<>(value);
         node.next = head;
         head = node;
+        this.size++;
     }
 
     void reverse() {
@@ -60,6 +62,10 @@ public class SinglyLinkedList<E> {
         }
 
         head = prev;
+    }
+
+    int size() {
+        return this.size;
     }
 
     @Override
@@ -88,7 +94,7 @@ public class SinglyLinkedList<E> {
         list.add(2);
         list.add(3);
         list.add(4);
-        list.addAll(4, 5, 6);
+        list.addAll(5, 6, 7);
         list.addFirst(0);
 
         System.out.println(list);
@@ -96,5 +102,7 @@ public class SinglyLinkedList<E> {
         list.reverse();
 
         System.out.println(list);
+
+        System.out.println("List size: " + list.size());
     }
 }

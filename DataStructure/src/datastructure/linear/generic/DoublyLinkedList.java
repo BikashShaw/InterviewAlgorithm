@@ -1,18 +1,46 @@
 package datastructure.linear.generic;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-public class DoublyLinkedList<E> {
+public class DoublyLinkedList<E> implements Iterable {
 
-    private static class Node<T> {
-        T value;
-        Node<T> next;
-        Node<T> back;
+    private class Iter implements Iterator<E> {
+
+        private int cursor = 0;
+
+        int lastRet = -1;
+
+        @Override
+        public boolean hasNext() {
+            return cursor != size;
+        }
+
+        @Override
+        public E next() {
+            try {
+                int i = cursor;
+                E next = get(i);
+                lastRet = i;
+                cursor = i + 1;
+                return next;
+            } catch (IndexOutOfBoundsException e) {
+                throw new NoSuchElementException();
+            }
+        }
+    }
+
+    @Override
+    public Iterator iterator() {
+        return new Iter();
+    }
+
+    private static class Node<E> {
+        E value;
+        DoublyLinkedList.Node<E> next;
+        DoublyLinkedList.Node<E> back;
 
 
-        Node(T value) {
+        Node(E value) {
             this.value = value;
             this.next = null;
             this.back = null;
@@ -24,8 +52,8 @@ public class DoublyLinkedList<E> {
         }
     }
 
-    private Node<E> head;
-    private Node<E> tail;
+    private DoublyLinkedList.Node<E> head;
+    private DoublyLinkedList.Node<E> tail;
     private Integer size;
 
     public DoublyLinkedList() {
@@ -40,7 +68,7 @@ public class DoublyLinkedList<E> {
     }
 
     public List<E> values() {
-        Node<E> node = head;
+        DoublyLinkedList.Node<E> node = head;
         List<E> values = new ArrayList<>();
 
         while (node != null) {
@@ -50,11 +78,29 @@ public class DoublyLinkedList<E> {
         return values;
     }
 
+    public E get(int index) {
+        if(index == 0) {
+            return head.value;
+        }
+        else if(index == size - 1) {
+            return tail.value;
+        } else {
+            int i = 0;
+            DoublyLinkedList.Node<E> next = head;
+            while (i <= index) {
+                next = next.next;
+                i++;
+            }
+
+            return next.value;
+        }
+    }
+
     public void add(E value) {
         if (head == null) {
             head = tail = new Node<>(value);
         } else {
-            Node<E> node = new Node<>(value);
+            DoublyLinkedList.Node<E> node = new Node<>(value);
             node.back = tail;
             tail.next = node;
             tail = node;
@@ -71,12 +117,12 @@ public class DoublyLinkedList<E> {
      *
      * @param index
      */
-    public Node<E> remove(int index) {
+    public E remove(int index) {
         if (index < 0 && index >= this.size) {
             throw new IllegalArgumentException("Index is outside range");
         }
 
-        Node<E> removed = null;
+        DoublyLinkedList.Node<E> removed = null;
         if (index == 0) {
             removed = head;
 
@@ -88,7 +134,7 @@ public class DoublyLinkedList<E> {
             tail.next = null;
         } else {
             int i = 0;
-            Node<E> node = head;
+            DoublyLinkedList.Node<E> node = head;
             while (i <= index) {
                 removed = node;
                 node = node.next;
@@ -102,7 +148,7 @@ public class DoublyLinkedList<E> {
         if(removed!=null){
             this.size--;
         }
-        return removed;
+        return removed.value;
     }
 
     /**
@@ -110,11 +156,11 @@ public class DoublyLinkedList<E> {
      *
      * @param index
      */
-    public Node<E> insert(E value, int index) {
+    public E insert(E value, int index) {
         if (index < 0 && index >= this.size) {
             throw new IllegalArgumentException("Index is outside range");
         }
-        Node<E> inserted = new Node<>(value);
+        DoublyLinkedList.Node<E> inserted = new Node<>(value);
 
         if (index == 0) {
             inserted.next = head;
@@ -125,7 +171,7 @@ public class DoublyLinkedList<E> {
             tail.next = inserted;
             tail = inserted;
         } else {
-            Node<E> node = head;
+            DoublyLinkedList.Node<E> node = head;
             int i = 0;
             while (i < index) {
                 node = node.next;
@@ -138,15 +184,15 @@ public class DoublyLinkedList<E> {
         }
 
         this.size++;
-        return inserted;
+        return inserted.value;
     }
 
     public void swap(int index1, int index2) {
-        Node<E> removedIndex1Node = this.remove(index1);
-        this.insert(removedIndex1Node.value, index2);
+        E removedIndex1Node = this.remove(index1);
+        this.insert(removedIndex1Node, index2);
 
-        Node<E> removeIndex2Node = this.remove(index2 - 1);
-        this.insert(removeIndex2Node.value, index1);
+        E removeIndex2Node = this.remove(index2 - 1);
+        this.insert(removeIndex2Node, index1);
 
     }
 
@@ -161,7 +207,7 @@ public class DoublyLinkedList<E> {
 
         builder.append("[");
 
-        Node<E> node = head;
+        DoublyLinkedList.Node<E> node = head;
 
         while (node != null) {
             builder.append(node.value);
@@ -192,7 +238,7 @@ public class DoublyLinkedList<E> {
 
         System.out.println("List size: " + doublyLinkedList.getSize());
 
-        Node<String> removedNode = doublyLinkedList.remove(3);
+        String removedNode = doublyLinkedList.remove(3);
 
         System.out.println("Removed: " + removedNode);
 
@@ -200,7 +246,7 @@ public class DoublyLinkedList<E> {
 
         System.out.println("List size: " + doublyLinkedList.getSize());
 
-        Node<String> insertedNode = doublyLinkedList.insert("E", 3);
+        String insertedNode = doublyLinkedList.insert("E", 3);
 
         System.out.println("Inserted: " + insertedNode);
 
@@ -215,6 +261,11 @@ public class DoublyLinkedList<E> {
         System.out.println(doublyLinkedList);
 
         System.out.println("List size: " + doublyLinkedList.getSize());
+
+
+        for (Object o : doublyLinkedList) {
+            System.out.println(o);
+        }
 
     }
 }

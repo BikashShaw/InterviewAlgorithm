@@ -87,6 +87,56 @@ public class SinglyLinkedList<E> {
         return builder.toString();
     }
 
+    public void swap(Node<E> x, Node<E> y) {
+
+
+        if (x == y) {
+            return;
+        }
+
+        Node<E> prevX = null;
+        Node<E> currX = head;
+
+        while (currX != null && currX != x) {
+            prevX = currX;
+            currX = currX.next;
+        }
+
+        Node<E> prevY = null;
+        Node<E> currY = head;
+
+        while (currY != null && currY != x) {
+            prevY = currY;
+            currY = currY.next;
+        }
+
+
+        if (currX == null || currY == null) {
+            return;
+        }
+
+        //fix prev pointers
+        if (prevX != null) { //X Not Head
+            prevX.next = currY;
+        } else { //X is Head
+            head = currY;
+        }
+
+        if (prevY != null) { //Y Not Head
+            prevY.next = currX;
+        } else { //Y is Head
+            head = currX;
+        }
+
+
+        //fix next pointers
+        Node<E> temp = currX.next;
+        currX.next = currY.next;
+        currY.next = temp;
+
+
+    }
+
     public static void main(String[] args) {
         SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
 
@@ -104,5 +154,8 @@ public class SinglyLinkedList<E> {
         System.out.println(list);
 
         System.out.println("List size: " + list.size());
+
+        list.swap(list.head.next, list.head.next.next);
+        System.out.println(list);
     }
 }

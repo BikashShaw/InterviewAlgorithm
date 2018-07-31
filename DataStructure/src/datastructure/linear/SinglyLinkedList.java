@@ -8,7 +8,7 @@ public class SinglyLinkedList {
 
     //Time Complexity: O(1)
     public void insertFirst(int data) {
-        if (head == null){
+        if (head == null) {
             head = new Node(data);
         } else {
             Node temp = new Node(data);
@@ -20,7 +20,7 @@ public class SinglyLinkedList {
     //Time Complexity: O(n)
     public void insertLast(int data) {
         Node temp = new Node(data);
-        if (head == null){
+        if (head == null) {
             head = temp;
         }
         Node tempHead = head;
@@ -37,7 +37,7 @@ public class SinglyLinkedList {
         Node tempHead = head;
 
         while (tempHead != null) {
-            if (tempHead.data == element){
+            if (tempHead.data == element) {
                 found = true;
                 break;
             }
@@ -49,7 +49,7 @@ public class SinglyLinkedList {
 
     //Time Complexity: O(n)
     public void traverse() {
-        if (head == null){
+        if (head == null) {
             System.out.println("Empty List!");
             return;
         }
@@ -64,7 +64,7 @@ public class SinglyLinkedList {
     }
 
     public void traverseReverse(Node node) {
-        if (node == null){
+        if (node == null) {
             return;
         }
         traverseReverse(node.next);
@@ -72,11 +72,11 @@ public class SinglyLinkedList {
     }
 
     public Node reverse(Node node) {
-        if (node == null){ // No Node
+        if (node == null) { // No Node
             return null;
         }
 
-        if (node.next == null){ //Only 1 node
+        if (node.next == null) { //Only 1 node
             return node;
         }
 
@@ -105,7 +105,7 @@ public class SinglyLinkedList {
     }
 
     public Node delete(Node head, int target) {
-        if (head == null){
+        if (head == null) {
             return head;
         }
 
@@ -115,9 +115,9 @@ public class SinglyLinkedList {
 
         Node temp = head;
 
-        if (temp != null){
+        if (temp != null) {
             while (temp.next != null) {
-                if (temp.next.data == target){
+                if (temp.next.data == target) {
                     temp.next = temp.next.next;
 
                 } else {
@@ -135,7 +135,7 @@ public class SinglyLinkedList {
      * @param node
      */
     public void deleteNode(Node node) {
-        if (node == null){
+        if (node == null) {
             return;
         }
         Node pre = node;
@@ -157,11 +157,11 @@ public class SinglyLinkedList {
      */
     public Node deleteDuplicatesFromSortedList(Node head) {
         Node mover = head;
-        if (mover == null){
+        if (mover == null) {
             return head;
         }
         while (mover.next != null) {
-            if (mover.data == mover.next.data){
+            if (mover.data == mover.next.data) {
                 mover.next = mover.next.next;
             } else {
                 mover = mover.next;
@@ -172,7 +172,7 @@ public class SinglyLinkedList {
     }
 
     public boolean hasCycle(Node head) {
-        if (head == null || head.next == null){
+        if (head == null || head.next == null) {
             return false;
         }
 
@@ -182,11 +182,61 @@ public class SinglyLinkedList {
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
-            if (slow == fast){
+            if (slow == fast) {
                 return true;
             }
         }
         return false;
+    }
+
+    //Geeks4Geeks
+    public void swap(Node x, Node y) {
+
+        // Nothing to do if x and y are same
+        if (x.data == y.data) {
+            return;
+        }
+
+        Node prevX = null;
+        Node currX = head;
+        // Search for x (keep track of prevX and currX)
+        while (currX != null && currX.data != x.data) {
+            prevX = currX;
+            currX = currX.next;
+        }
+
+        Node prevY = null;
+        Node currY = head;
+        // Search for y (keep track of prevY and currY)
+        while (currY != null && currY.data != y.data) {
+            prevY = currY;
+            currY = currY.next;
+        }
+
+        // If either x or y is not present, nothing to do
+        if (currX == null || currY == null) {
+            return;
+        }
+
+        /* Swap Previous Pointers */
+        // If x is not head of linked list
+        if (prevX != null) {
+            prevX.next = currY;
+        } else { //if x is head
+            head = currY;
+        }
+
+        // If y is not head of linked list
+        if (prevY != null) {
+            prevY.next = currX;
+        } else { // if y is head
+            head = currX;
+        }
+
+        /* Swap next pointers */
+        Node temp = currX.next;
+        currX.next = currY.next;
+        currY.next = temp;
     }
 
     public static void main(String[] args) {
@@ -217,6 +267,14 @@ public class SinglyLinkedList {
         linkedList.traverse();
         System.out.println("**Deleting 3**");
         linkedList.head = linkedList.delete(linkedList.head, 3);
+        linkedList.traverse();
+
+        //15 and 7
+        linkedList.swap(linkedList.head, linkedList.head.next.next);
+        linkedList.traverse();
+
+        //15 and 5
+        linkedList.swap(linkedList.head.next.next, linkedList.head.next.next.next);
         linkedList.traverse();
     }
 }

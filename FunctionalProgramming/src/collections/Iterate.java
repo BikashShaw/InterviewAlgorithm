@@ -26,7 +26,7 @@ public class Iterate {
 
     public void iterateWithLambda() {
         System.out.println("Using Lambda Expression:");
-        friends.forEach(s -> System.out.println(s));
+        friends.forEach(System.out::println);
     }
 
     public void iterateWithMethodReference() {
@@ -37,7 +37,7 @@ public class Iterate {
     public void iterateWithMethodReferenceUpperCaseTransform() {
         System.out.println("Using Method Reference Upper Case Transform:");
         friends.stream()
-                .map(name -> name.toUpperCase())
+                .map(String::toUpperCase)
                 .forEach(System.out::println);
     }
 

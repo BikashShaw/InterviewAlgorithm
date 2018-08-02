@@ -18,7 +18,7 @@ public class MirrorBinaryTree {
         if(nodeA == null && nodeB == null) {
             return true;
         }
-        if(nodeA==null ^ nodeA==null) {
+        if(nodeA==null ^ nodeB==null) {
             return false;
         }
         return nodeA.data == nodeB.data && isMirror(nodeA.leftChild, nodeB.rightChild) && isMirror(nodeA.rightChild, nodeB.leftChild);

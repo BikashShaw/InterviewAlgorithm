@@ -2,29 +2,29 @@ package deadlock;
 
 /**
  * jvisualvm.exe OUTPUT:
- *
+ * <p>
  * Found one Java-level deadlock:
  * =============================
  * "T2":
- *   waiting to lock monitor 0x00000000171cd658 (object 0x00000000d5f16778, a java.lang.Object),
- *   which is held by "T1"
+ * waiting to lock monitor 0x00000000171cd658 (object 0x00000000d5f16778, a java.lang.Object),
+ * which is held by "T1"
  * "T1":
- *   waiting to lock monitor 0x00000000189c88f8 (object 0x00000000d5f16788, a java.lang.Object),
- *   which is held by "T2"
- *
+ * waiting to lock monitor 0x00000000189c88f8 (object 0x00000000d5f16788, a java.lang.Object),
+ * which is held by "T2"
+ * <p>
  * Java stack information for the threads listed above:
  * ===================================================
  * "T2":
- *         at deadlock.MyThread2.run(DeadLockDemo.java:73)
- *         - waiting to lock <0x00000000d5f16778> (a java.lang.Object)
- *         - locked <0x00000000d5f16788> (a java.lang.Object)
- *         at java.lang.Thread.run(Thread.java:748)
+ * at deadlock.MyThread2.run(DeadLockDemo.java:73)
+ * - waiting to lock <0x00000000d5f16778> (a java.lang.Object)
+ * - locked <0x00000000d5f16788> (a java.lang.Object)
+ * at java.lang.Thread.run(Thread.java:748)
  * "T1":
- *         at deadlock.MyThread1.run(DeadLockDemo.java:47)
- *         - waiting to lock <0x00000000d5f16788> (a java.lang.Object)
- *         - locked <0x00000000d5f16778> (a java.lang.Object)
- *         at java.lang.Thread.run(Thread.java:748)
- *
+ * at deadlock.MyThread1.run(DeadLockDemo.java:47)
+ * - waiting to lock <0x00000000d5f16788> (a java.lang.Object)
+ * - locked <0x00000000d5f16778> (a java.lang.Object)
+ * at java.lang.Thread.run(Thread.java:748)
+ * <p>
  * Found 1 deadlock.
  */
 public class DeadLockDemo {

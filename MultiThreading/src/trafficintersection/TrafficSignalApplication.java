@@ -45,10 +45,10 @@ public class TrafficSignalApplication {
         TrafficFlow northSouthTrafficFlow = new TrafficFlow(20);
         TrafficFlow eastWestTrafficFlow = new TrafficFlow(20);
         CompletableFuture<LinkedList<Integer>> northSouthCompletableFuture
-                = CompletableFuture.supplyAsync(northSouthTrafficFlow.flow(TrafficSignal.GREEN));
+                = CompletableFuture.supplyAsync(() -> northSouthTrafficFlow.flow(TrafficSignal.GREEN));
 
         CompletableFuture<LinkedList<Integer>> eastWestCompletableFuture
-                = CompletableFuture.supplyAsync(eastWestTrafficFlow.flow(TrafficSignal.RED));
+                = CompletableFuture.supplyAsync(() -> eastWestTrafficFlow.flow(TrafficSignal.RED));
 
         TrafficReport trafficReport = new TrafficReport(20);
 

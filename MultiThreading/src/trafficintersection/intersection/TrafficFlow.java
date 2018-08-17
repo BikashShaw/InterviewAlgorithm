@@ -17,7 +17,7 @@ public class TrafficFlow {
         this.atomicInteger = new AtomicInteger(0);
     }
 
-    public Supplier<LinkedList<Integer>> flow(TrafficSignal currentTrafficSignal) {
+    public LinkedList<Integer> flow(TrafficSignal currentTrafficSignal) {
 
         int carCount;
         int greenCount = 0;
@@ -52,7 +52,7 @@ public class TrafficFlow {
         }
 
 
-        return () -> totalCarsPerSecondCounter;
+        return totalCarsPerSecondCounter;
     }
 
     private void exitIntersection() {

@@ -9,8 +9,33 @@ import java.util.Map;
  */
 public class BinaryTree {
 
-    BinaryTreeNode root;
+    public BinaryTreeNode root;
     int size = 0;
+
+    //Also Level order insert
+    public void binaryBalancedTreeInsert(int data) {
+        size++;
+
+        if (root == null) {
+            root = new BinaryTreeNode(data);
+        } else {
+            java.util.Queue<BinaryTreeNode> binaryTreeNodeQueue = new LinkedList<>();
+            binaryTreeNodeQueue.add(root);
+            while (!binaryTreeNodeQueue.isEmpty()) {
+                BinaryTreeNode node = binaryTreeNodeQueue.poll();
+                if (node.leftChild == null) {
+                    node.leftChild = new BinaryTreeNode(data);
+                    break;
+                } else if (node.rightChild == null) {
+                    node.rightChild = new BinaryTreeNode(data);
+                    break;
+                } else {
+                    binaryTreeNodeQueue.add(node.leftChild);
+                    binaryTreeNodeQueue.add(node.rightChild);
+                }
+            }
+        }
+    }
 
     //Time Complexity Average: Θ(log(h)) Worst: O(h)
     public void binarySearchTreeInsert(int data) {
@@ -24,13 +49,13 @@ public class BinaryTree {
                 if (data <= tempRoot.data && tempRoot.leftChild == null) {
                     tempRoot.leftChild = new BinaryTreeNode(data);
                     break;
-                } else if(data <= tempRoot.data && tempRoot.leftChild != null) {
+                } else if (data <= tempRoot.data && tempRoot.leftChild != null) {
                     tempRoot = tempRoot.leftChild;
                     continue;
                 } else if (data > tempRoot.data && tempRoot.rightChild == null) {
                     tempRoot.rightChild = new BinaryTreeNode(data);
                     break;
-                }else if(data > tempRoot.data && tempRoot.rightChild != null) {
+                } else if (data > tempRoot.data && tempRoot.rightChild != null) {
                     tempRoot = tempRoot.rightChild;
                     continue;
                 }
@@ -71,11 +96,11 @@ public class BinaryTree {
         while (!binaryTreeNodeQueue.isEmpty()) {
             BinaryTreeNode polledBinaryTreeNode = binaryTreeNodeQueue.poll();
             System.out.println(polledBinaryTreeNode.data);
-            if(polledBinaryTreeNode.leftChild != null) {
+            if (polledBinaryTreeNode.leftChild != null) {
                 binaryTreeNodeQueue.add(polledBinaryTreeNode.leftChild);
             }
 
-            if(polledBinaryTreeNode.rightChild != null) {
+            if (polledBinaryTreeNode.rightChild != null) {
                 binaryTreeNodeQueue.add(polledBinaryTreeNode.rightChild);
             }
         }
@@ -99,12 +124,12 @@ public class BinaryTree {
     //Find Smallest and Largest sum
     public void sumMinMax(BinaryTreeNode rootNode, int sum, Map<String, Integer> minMaxSumMap) {
         if (rootNode == null) {
-            if(minMaxSumMap.get("minSum") > sum) {
+            if (minMaxSumMap.get("minSum") > sum) {
                 minMaxSumMap.put("minSum", sum);
                 System.out.println("Current Smallest Sum: " + sum);
             }
 
-            if(minMaxSumMap.get("maxSum") < sum) {
+            if (minMaxSumMap.get("maxSum") < sum) {
                 minMaxSumMap.put("maxSum", sum);
                 System.out.println("Current Largest Sum: " + sum);
             }
@@ -123,7 +148,7 @@ public class BinaryTree {
     }
 
     public boolean isBalanced(BinaryTreeNode rootNode) {
-        return (maxDepth(rootNode) - minDepth(rootNode) <=1);
+        return (maxDepth(rootNode) - minDepth(rootNode) <= 1);
     }
 
     public int maxDepth(BinaryTreeNode rootNode) {
@@ -144,7 +169,7 @@ public class BinaryTree {
 
     //O(n) - n is number of nodes
     public int findHeight(BinaryTreeNode rootNode) {
-        if(rootNode == null) {
+        if (rootNode == null) {
             return -1;
         }
 
@@ -156,7 +181,7 @@ public class BinaryTree {
 
     //O(n)
     public BinaryTreeNode lowestCommonAncestor(BinaryTreeNode root, BinaryTreeNode p, BinaryTreeNode q) {
-        if(root == null || p == null || q == null) {
+        if (root == null || p == null || q == null) {
             return root;
         }
 
@@ -168,22 +193,22 @@ public class BinaryTree {
 
     //Time Complexity O(n) - n is number of nodes in tree
     public boolean isBinarySearchTree(BinaryTreeNode node, int min, int max) {
-        if(node == null) {
+        if (node == null) {
             return true;
         }
 
-        if(node.data < min || node.data > max) {
+        if (node.data < min || node.data > max) {
             return false;
         }
 
-        return  isBinarySearchTree(node.leftChild, min, node.data+1) && isBinarySearchTree(node.rightChild, node.data +1, max);
+        return isBinarySearchTree(node.leftChild, min, node.data + 1) && isBinarySearchTree(node.rightChild, node.data + 1, max);
     }
 
     public boolean isSubTree(BinaryTreeNode treeNode, BinaryTreeNode subTreeNode) {
-        if (treeNode == null || subTreeNode == null){
+        if (treeNode == null || subTreeNode == null) {
             return false;
         }
-        if (treeNode.data == subTreeNode.data){
+        if (treeNode.data == subTreeNode.data) {
             return compareEachNode(treeNode, subTreeNode);
         } else {
             return isSubTree(treeNode.leftChild, subTreeNode) || isSubTree(treeNode.rightChild, subTreeNode);
@@ -193,9 +218,9 @@ public class BinaryTree {
     }
 
     private boolean compareEachNode(BinaryTreeNode treeNode, BinaryTreeNode subTreeNode) {
-        if (subTreeNode == null){
+        if (subTreeNode == null) {
             return true;
-        } else if (treeNode == null){
+        } else if (treeNode == null) {
             return false;
         } else {
             return treeNode.data == subTreeNode.data && compareEachNode(treeNode.leftChild, subTreeNode.leftChild)
@@ -216,8 +241,8 @@ public class BinaryTree {
         binarySearchTree.sumRootToLeaf(binarySearchTree.root, 0);
 
         Map<String, Integer> map = new HashMap<>();
-        map.put("minSum",Integer.MAX_VALUE);
-        map.put("maxSum",Integer.MIN_VALUE);
+        map.put("minSum", Integer.MAX_VALUE);
+        map.put("maxSum", Integer.MIN_VALUE);
         binarySearchTree.sumMinMax(binarySearchTree.root, 0, map);
     }
 

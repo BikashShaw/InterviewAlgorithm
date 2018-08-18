@@ -1,9 +1,9 @@
 package complex.algo.fb;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class MaxPopulation {
     public static class PersonBDYears {
@@ -17,30 +17,27 @@ public class MaxPopulation {
     }
 
     int maxPopulation(List<PersonBDYears> personBDYearsList) {
+        Map<Integer, Integer> bdMap = new TreeMap<>();
         int maxYear = 0;
-        Map<Integer, Integer> bdMap = new HashMap<>();
-        personBDYearsList.forEach(personBDYears -> {
-            for (int aliveYear = personBDYears.birthYear; aliveYear <= personBDYears.deathYear ; aliveYear++) {
-                if(bdMap.containsKey(aliveYear)) {
-                    Integer population = bdMap.get(aliveYear);
+        int maxPopulation = 0;
+        for (PersonBDYears personBDYears : personBDYearsList) {
+            for (int aliveYear = personBDYears.birthYear; aliveYear <= personBDYears.deathYear; aliveYear++) {
+                Integer population = 1;
+                if (bdMap.containsKey(aliveYear)) {
+                    population = bdMap.get(aliveYear);
                     population++;
                     bdMap.replace(aliveYear, population);
+
                 } else {
-                    bdMap.put(aliveYear, 1);
+                    bdMap.put(aliveYear, population);
+                }
+                if (population > maxPopulation) {
+                    maxPopulation = population;
+                    maxYear = aliveYear;
                 }
             }
-        });
-
-        System.out.println(bdMap);
-
-        int maxPopulation = 0;
-        for (Integer aliveYear : bdMap.keySet()) {
-            Integer population = bdMap.get(aliveYear);
-            if(population > maxPopulation) {
-                maxPopulation = population;
-                maxYear = aliveYear;
-            }
         }
+        System.out.println(bdMap);
 
         return maxYear;
     }
@@ -53,6 +50,7 @@ public class MaxPopulation {
         personBDYearsList.add(new PersonBDYears(2012, 2015)); // 15
         personBDYearsList.add(new PersonBDYears(2013, 2016)); // 15
         personBDYearsList.add(new PersonBDYears(2015, 2018)); // 15
+        personBDYearsList.add(new PersonBDYears(2000, 2008)); //
 
 
         MaxPopulation maxPopulation = new MaxPopulation();

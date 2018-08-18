@@ -44,6 +44,7 @@ public class MaxPopulation {
 
     public static void main(String[] args) {
         List<PersonBDYears> personBDYearsList = new ArrayList<>();
+        personBDYearsList.add(new PersonBDYears(1618, 1622)); //
         personBDYearsList.add(new PersonBDYears(2010, 2018)); // 15
         personBDYearsList.add(new PersonBDYears(2011, 2017)); // 15
         personBDYearsList.add(new PersonBDYears(2010, 2017)); // 15

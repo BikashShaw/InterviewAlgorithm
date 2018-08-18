@@ -7,15 +7,15 @@ import java.util.Stack;
  */
 public class BalancedParentheses {
 
-    public boolean isBalanced(String expession) {
-        if (expession.length() == 1 && (expession.equals("(") || expession.equals(")") || expession.equals("}")
-                || expession.equals("{") || expession.equals("[") || expession.equals("]"))) {
+    public boolean isBalanced(String expression) {
+        if (expression.length() == 1 && (expression.equals("(") || expression.equals(")") || expression.equals("}")
+                || expression.equals("{") || expression.equals("[") || expression.equals("]"))) {
             return false;
         }
         boolean balanced = true;
         Stack<Character> parenthesesStack = new Stack<>();
-        for (int i = 0; i < expession.length(); i++) {
-            char parentheses = expession.charAt(i);
+        for (int i = 0; i < expression.length(); i++) {
+            char parentheses = expression.charAt(i);
             if (parentheses == '(' || parentheses == '{' || parentheses == '[') {
                 parenthesesStack.push(parentheses);
             } else if (!parenthesesStack.isEmpty() && parentheses == ')') {

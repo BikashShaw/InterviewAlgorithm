@@ -185,12 +185,23 @@ public class BinaryTree {
         }
 
         BinaryTreeNode left = lowestCommonAncestor(root.leftChild, p, q);
-        BinaryTreeNode right = lowestCommonAncestor(root.leftChild, p, q);
+        BinaryTreeNode right = lowestCommonAncestor(root.rightChild, p, q);
 
         if (left != null && right != null) {
             return root;
         } else {
             return left != null ? left : right;
+        }
+    }
+
+    public BinaryTreeNode lowestCommonAncestorBinarySearchTree(BinaryTreeNode root, BinaryTreeNode p, BinaryTreeNode q) {
+        if ((p.data >= root.data && q.data <= root.data) || (q.data >= root.data && p.data <= root.data)) {
+            return root;
+        }
+        if (p.data > root.data) {
+            return lowestCommonAncestorBinarySearchTree(root.rightChild, p, q);
+        } else {
+            return lowestCommonAncestorBinarySearchTree(root.leftChild, p, q);
         }
     }
 
@@ -240,6 +251,11 @@ public class BinaryTree {
 
         System.out.println("Height of tree: " + binarySearchTree.findHeight(binarySearchTree.root));
         System.out.println("Is Binary Search tree: " + binarySearchTree.isBinarySearchTree(binarySearchTree.root, Integer.MIN_VALUE, Integer.MAX_VALUE));
+
+        BinaryTreeNode lcaBST = binarySearchTree.lowestCommonAncestorBinarySearchTree(binarySearchTree.root,
+                binarySearchTree.root.leftChild.leftChild, binarySearchTree.root.rightChild.rightChild);
+
+        System.out.println("Lowest Common Ancestor BST: " + lcaBST.data);
 
         binarySearchTree.sumRootToLeaf(binarySearchTree.root, 0);
 

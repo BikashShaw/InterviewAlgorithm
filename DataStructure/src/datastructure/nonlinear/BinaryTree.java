@@ -179,16 +179,19 @@ public class BinaryTree {
         return Math.max(leftHeight, rightHeight);
     }
 
-    //O(n)
     public BinaryTreeNode lowestCommonAncestor(BinaryTreeNode root, BinaryTreeNode p, BinaryTreeNode q) {
-        if (root == null || p == null || q == null) {
+        if (root == p || root == q || root == null) {
             return root;
         }
 
         BinaryTreeNode left = lowestCommonAncestor(root.leftChild, p, q);
-        BinaryTreeNode right = lowestCommonAncestor(root.rightChild, p, q);
+        BinaryTreeNode right = lowestCommonAncestor(root.leftChild, p, q);
 
-        return left != null ? left : right != null ? right : root;
+        if (left != null && right != null) {
+            return root;
+        } else {
+            return left != null ? left : right;
+        }
     }
 
     //Time Complexity O(n) - n is number of nodes in tree

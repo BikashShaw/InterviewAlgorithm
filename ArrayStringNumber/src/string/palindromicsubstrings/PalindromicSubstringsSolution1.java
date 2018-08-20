@@ -1,84 +1,36 @@
 package string.palindromicsubstrings;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
+/**
+ * Best Solution
+ */
 public class PalindromicSubstringsSolution1 {
 
-    static class SubStringInfo {
-        int startIndex, endIndex;
-        String subString;
-
-        public SubStringInfo(int startIndex, int endIndex, String subString) {
-            this.startIndex = startIndex;
-            this.endIndex = endIndex;
-            this.subString = subString;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof SubStringInfo)) return false;
-            SubStringInfo that = (SubStringInfo) o;
-            return startIndex == that.startIndex &&
-                    endIndex == that.endIndex &&
-                    Objects.equals(subString, that.subString);
-        }
-
-        @Override
-        public int hashCode() {
-
-            return Objects.hash(startIndex, endIndex, subString);
-        }
-
-        @Override
-        public String toString() {
-            return "SubStringInfo{" +
-                    "startIndex=" + startIndex +
-                    ", endIndex=" + endIndex +
-                    ", subString='" + subString + '\'' +
-                    '}';
-        }
-    }
-
     public static void main(String[] args) {
-        System.out.println(countSubstrings("aaa"));
-        System.out.println(countSubstrings("aaaa"));
+        PalindromicSubstringsSolution1 palindromicSubstringsSolution1 = new PalindromicSubstringsSolution1();
 
-        System.out.println(countSubstrings("xkjkqlajprjwefilxgpdpebieswu"));
+        System.out.println(palindromicSubstringsSolution1.countSubstrings("aaa"));
+        System.out.println(palindromicSubstringsSolution1.countSubstrings("abc"));
 
+        System.out.println(palindromicSubstringsSolution1.countSubstrings("dnncbwoneinoplypwgbwktmvkoimcooyiwirgbxlcttgteqthcvyoueyftiwgwwxvxvg"));
     }
 
-    public static int countSubstrings(String s) {
-        ArrayList<SubStringInfo> subStringList = new ArrayList<>();
-        new PalindromicSubstringsSolution1().allSubStrings(s, subStringList, 0, s.length());
-
-        return subStringList.size();
+    public int countSubstrings(String str) {
+        if (str == null || str.length() < 1) return 0;
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            count += countPalindromes(str, i, i); //Count even sized
+            count += countPalindromes(str, i, i + 1); //Count odd sized
+        }
+        return count;
     }
 
-    private void allSubStrings(String str, List<SubStringInfo> subStringList, int left, int right) {
-        if (left >= right) {
-            return;
+    private int countPalindromes(String str, int s, int e) {
+        int count = 0;
+        while (s >= 0 && e < str.length() && str.charAt(s) == str.charAt(e)) {
+            s--;
+            e++;
+            count++;
         }
-
-        SubStringInfo substringInfo = new SubStringInfo(left, right, str.substring(left, right));
-        if (!subStringList.contains(substringInfo) && isPalindrome(substringInfo.subString)) {
-            System.out.println(substringInfo);
-            subStringList.add(substringInfo);
-        }
-
-        allSubStrings(str, subStringList, left, right - 1);
-        allSubStrings(str, subStringList, left + 1, right);
-    }
-
-    private boolean isPalindrome(String s) {
-        int n = s.length();
-        for (int i = 0; i < n / 2; i++) {
-            if (s.charAt(i) != s.charAt(n - 1 - i)) {
-                return false;
-            }
-        }
-        return true;
+        return count;
     }
 }

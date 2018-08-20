@@ -1,4 +1,4 @@
-package string;
+package string.palindromicsubstrings;
 
 public class PalindromicSubstringsSolution2 {
 

@@ -18,13 +18,13 @@ public class LongestPalindrome {
 
         for (int i = 0; i < s.length(); i++) {
 
-            // get longest palindrome with center of i
+            // get longest palindrome with center of i (Even)
             temp = helper(s,i,i);
             if(temp.length() > longest.length()) {
                 longest = temp;
             }
 
-            // get longest palindrome with center of i, i+1
+            // get longest palindrome with center of i, i+1 (Odd)
             temp = helper(s,i,i+1);
             if(temp.length() > longest.length()) {
                 longest = temp;

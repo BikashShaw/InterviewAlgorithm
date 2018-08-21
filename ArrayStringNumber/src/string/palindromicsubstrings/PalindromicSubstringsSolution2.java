@@ -1,51 +1,49 @@
 package string.palindromicsubstrings;
 
+/**
+ * Accepted by Leetcode
+ */
 public class PalindromicSubstringsSolution2 {
 
-    static int counter = 0;
-
     public static void main(String[] args) {
-        System.out.println(countSubstrings("aaa"));
-        System.out.println(countSubstrings("abc"));
 
-        System.out.println(countSubstrings("dnncbwoneinoplypwgbwktmvkoimcooyiwirgbxlcttgteqthcvyoueyftiwgwwxvxvg"));
+        PalindromicSubstringsSolution2 palindromicSubstringsSolution4 = new PalindromicSubstringsSolution2();
+        System.out.println(palindromicSubstringsSolution4.countSubstrings("dnncbwoneinoplypwgbwktmvkoimcooyiwirgbxlcttgteqthcvyoueyftiwgwwxvxvg"));
     }
 
-    public static int countSubstrings(String s) {
+    public int countSubstrings(String s) {
+        int palindromeCount = 0;
         int n = s.length();
-        boolean[][] visited = new boolean[n][n];
-        counter = 0;
-        new PalindromicSubstringsSolution2().allSubStrings(s, visited, 0, n);
+        int i = 0;
 
-        return counter;
-    }
 
-    private void allSubStrings(String str, boolean[][] visited, int left, int right) {
+        while (i < n) {
+            for (int j = 0; j < n; j++) {
+                int start = j;
+                int end = j + i;
+                if (end >= n) {
+                    break;
+                }
 
-        if (left >= right) {
-            return;
-        }
-
-        if (!visited[left][right - 1]) {
-            visited[left][right - 1] = true;
-            if (isPalindrome(str, left, right)) {
-                counter++;
+                String substring = s.substring(start, end + 1);
+                boolean palindrome = isPalindrome(substring);
+                if (palindrome) {
+                    palindromeCount++;
+                }
+                System.out.println(substring + " : " + palindrome);
             }
+            i++;
+
         }
-        allSubStrings(str, visited, left, right - 1);
-        allSubStrings(str, visited, left + 1, right);
+        return palindromeCount;
     }
 
-
-    private boolean isPalindrome(String s, int left, int right) {
-
-        while (left < right){
-            if (s.charAt(left) != s.charAt(right - 1)) {
+    private boolean isPalindrome(String s) {
+        int n = s.length();
+        for (int i = 0; i < n / 2; i++) {
+            if (s.charAt(i) != s.charAt(n - 1 - i)) {
                 return false;
             }
-            left++;
-            right--;
-
         }
         return true;
     }

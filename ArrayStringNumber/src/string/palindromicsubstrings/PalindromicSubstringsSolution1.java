@@ -1,7 +1,7 @@
 package string.palindromicsubstrings;
 
 /**
- * Best Solution
+ * Best DistanceBetweenTwoBSTNodes
  */
 public class PalindromicSubstringsSolution1 {
 

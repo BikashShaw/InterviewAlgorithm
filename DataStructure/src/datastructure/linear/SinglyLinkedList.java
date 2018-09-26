@@ -104,27 +104,24 @@ public class SinglyLinkedList {
         this.head = previous;
     }
 
+
     public Node delete(Node head, int target) {
-        if (head == null) {
-            return head;
+        if(head == null ) {
+            return null;
+        }
+        Node current = head , pre = null;
+
+        while(current != null && current.data != target) {
+            pre = current;
+            current = current.next;
         }
 
-        while (head != null && head.data == target) {
+        if (pre == null) { // head
             head = head.next;
+        } else if(current != null) { // found
+            pre.next = current.next;
         }
 
-        Node temp = head;
-
-        if (temp != null) {
-            while (temp.next != null) {
-                if (temp.next.data == target) {
-                    temp.next = temp.next.next;
-
-                } else {
-                    temp = temp.next;
-                }
-            }
-        }
         return head;
     }
 

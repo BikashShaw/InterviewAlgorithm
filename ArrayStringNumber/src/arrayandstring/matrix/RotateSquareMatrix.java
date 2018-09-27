@@ -30,7 +30,7 @@ public class RotateSquareMatrix {
         return transposed;
     }
 
-    private void printMatrix(int matrix[][]) {
+    public static void printMatrix(int matrix[][]) {
         for (int[] rows : matrix) {
             for (int value : rows) {
                 System.out.print(value + " ");
@@ -45,11 +45,11 @@ public class RotateSquareMatrix {
 
         RotateSquareMatrix rotateSquareMatrix = new RotateSquareMatrix();
         System.out.println("**MATRIX**");
-        rotateSquareMatrix.printMatrix(matrix);
+        RotateSquareMatrix.printMatrix(matrix);
         System.out.println("**Rotate Left**");
-        rotateSquareMatrix.printMatrix(rotateSquareMatrix.rotate(matrix, Rotation.LEFT));
+        RotateSquareMatrix.printMatrix(rotateSquareMatrix.rotate(matrix, Rotation.LEFT));
         System.out.println("**Rotate Right**");
-        rotateSquareMatrix.printMatrix(rotateSquareMatrix.rotate(matrix, Rotation.RIGHT));
+        RotateSquareMatrix.printMatrix(rotateSquareMatrix.rotate(matrix, Rotation.RIGHT));
     }
 }
 

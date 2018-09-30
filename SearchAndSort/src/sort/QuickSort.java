@@ -14,10 +14,10 @@ public class QuickSort {
     }
 
     public static void quickSort(int arr[], int low, int high) {
-        if(low < high) {
+        if (low < high) {
             int partition = partition(arr, low, high);
-            quickSort(arr,low, partition - 1);
-            quickSort(arr,partition + 1, high);
+            quickSort(arr, low, partition - 1);
+            quickSort(arr, partition + 1, high);
         }
     }
 
@@ -25,18 +25,18 @@ public class QuickSort {
         int pivot = high;
         int i = low - 1;
         for (int j = low; j < high; j++) {
-            if(arr[j] < arr[pivot]) {
+            if (arr[j] < arr[pivot]) {
                 i++;
-                swapAndPrint(arr,i, j);
+                swapAndPrint(arr, i, j);
             }
         }
         i++;
-        swapAndPrint(arr,i, pivot);
+        swapAndPrint(arr, i, pivot);
         return i;
     }
 
     public static void main(String[] args) {
-        int[] arr = {6, 2, 8, 5, 3, 9, 4, 1, 7, 0};
+        int[] arr = {4, 19, 14, 5, -3, 1, 8, 5, 11, 15};
 
         System.out.println("*BEFORE SORT**");
         print(arr);

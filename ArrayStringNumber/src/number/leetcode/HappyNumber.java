@@ -5,7 +5,7 @@ public class HappyNumber {
     public static void main(String[] args) {
         HappyNumber happyNumber = new HappyNumber();
         System.out.println("Happy Number 19: " + happyNumber.isHappy(19));
-//
+
         System.out.println("Happy Number 27: " + happyNumber.isHappy(27));
 
         System.out.println("Happy Number 7: " + happyNumber.isHappy(7));
@@ -33,8 +33,6 @@ public class HappyNumber {
                 sum += sqar;
 
             }
-
-            System.out.println("sum: " + sum);
         }
 
         return sum == 1;

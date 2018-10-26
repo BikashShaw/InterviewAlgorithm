@@ -8,11 +8,13 @@ public class DecodeWays {
     public static void main(String[] args) {
         DecodeWays decodeWays = new DecodeWays();
 
-        System.out.println(decodeWays.numDecodings("1212"));
+        System.out.println(decodeWays.numDecodings_DP("1212"));
+
+        System.out.println(decodeWays.numDecodings_recursion("1212", 4));
 
     }
 
-    public int numDecodings(String s) {
+    public int numDecodings_DP(String s) {
         if (s == null || s.length() == 0) {
             return 0;
         }
@@ -31,5 +33,27 @@ public class DecodeWays {
             }
         }
         return dp[n];
+    }
+
+    public int numDecodings_recursion(String s, int k) {
+        if(k == 0){
+            return 1;
+        }
+        if (s == null || s.length() == 0) {
+            return 0;
+        }
+        if(s.charAt(0) == '0') {
+            return 0;
+        }
+        int result = numDecodings_recursion(s.substring(1), k - 1);
+
+        if(s.length() > 1) {
+            int secondNum = Integer.valueOf(s.substring(0, 2));
+
+            if(secondNum <= 26) {
+                result += numDecodings_recursion(s.substring(2), k - 2);
+            }
+        }
+        return result;
     }
 }

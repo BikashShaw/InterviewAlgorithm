@@ -1,0 +1,1 @@
+Passed test: total reservation count does not exceed event capacity for concurrent reservation requests.

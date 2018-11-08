@@ -5,7 +5,6 @@ import java.io.PrintStream;
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,9 +16,9 @@ public class TicketReservationSystem {
     private final Event event;
     private final TicketPrinter printer;
 
-    private AtomicInteger atomicSerial;
+    private int atomicSerial;
     private ReentrantLock lock;
-    private AtomicInteger currentCapacity;
+    private int currentCapacity;
     private Map<String, Integer> tickesPerAccount;
 
     /**
@@ -28,8 +27,8 @@ public class TicketReservationSystem {
     public TicketReservationSystem(Event event, TicketPrinter printer) {
         this.event = event;
         this.printer = printer;
-        this.currentCapacity = new AtomicInteger(this.event.capacity);
-        this.atomicSerial = new AtomicInteger(1);
+        this.currentCapacity = this.event.capacity;
+        this.atomicSerial = 1;
         this.lock = new ReentrantLock();
         this.tickesPerAccount = new ConcurrentHashMap<>();
 
@@ -46,21 +45,22 @@ public class TicketReservationSystem {
         // TODO: Implement this method. See `TicketPrinter::printTicket` and the fields of `Event` below.
         Optional<Ticket> ticket = Optional.empty();
         lock.lock();
-        if (this.currentCapacity.get() > 0) {
+        if (this.currentCapacity > 0) {
             if (this.tickesPerAccount.containsKey(accountId)) {
-                Integer ticketSold = this.tickesPerAccount.get(accountId);
+                int ticketSold = this.tickesPerAccount.get(accountId);
                 if (ticketSold < this.event.maxTicketsPerAccount) {
-                    ticket = Optional.of(this.printer.printTicket(this.event, accountId, atomicSerial.incrementAndGet()));
+                    atomicSerial++;
+                    ticket = Optional.of(this.printer.printTicket(this.event, accountId, atomicSerial));
                     ticketSold++;
                     this.tickesPerAccount.put(accountId, ticketSold);
-                    this.currentCapacity.decrementAndGet();
+                    this.currentCapacity--;
                 }
             } else {
-                ticket = Optional.of(this.printer.printTicket(this.event, accountId, atomicSerial.incrementAndGet()));
+                atomicSerial++;
+                ticket = Optional.of(this.printer.printTicket(this.event, accountId, atomicSerial));
                 this.tickesPerAccount.put(accountId, 1);
-                this.currentCapacity.decrementAndGet();
+                this.currentCapacity--;
             }
-
         }
         lock.unlock();
         // NOTE: Probably best to solve for serial execution first. Then thread-safety.
@@ -122,9 +122,9 @@ public class TicketReservationSystem {
         long startTime = System.nanoTime();
         Collection<Ticket> reservations =
                 reservationRequests
-                        .map((accountId) -> boxOffice.reserveTicket(accountId))
-                        .filter((ticket) -> ticket.isPresent())
-                        .map((ticket) -> ticket.get())
+                        .map(boxOffice::reserveTicket)
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
                         .collect(Collectors.toList());
         long endTime = System.nanoTime();
         int testRunTimeInMilliseconds = (int) (Duration.ofNanos(endTime - startTime).toMillis());
